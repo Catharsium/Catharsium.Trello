@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs/Catharsium.Trello
+/Catharsium.Trello.Core/obj
+/Catharsium.Trello.Core.Tests/obj
+/Catharsium.Trello.Models/obj
