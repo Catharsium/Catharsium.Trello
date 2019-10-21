@@ -6,3 +6,10 @@
 /Catharsium.Trello.Core/obj
 /Catharsium.Trello.Core.Tests/obj
 /Catharsium.Trello.Models/obj
+/Catharsium.Trello.Console/bin/Debug/netcoreapp3.0
+/Catharsium.Trello.Console/obj
+/Catharsium.Trello.Core/bin/Debug/netstandard2.0
+/Catharsium.Trello.Core.Tests/bin/Debug/netcoreapp3.0
+/Catharsium.Trello.Models/bin/Debug/netstandard2.0
+/Catharsium.Trello.Models.Tests/bin/Debug/netcoreapp3.0
+/Catharsium.Trello.Models.Tests/obj
