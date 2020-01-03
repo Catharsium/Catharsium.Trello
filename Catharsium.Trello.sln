@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Models", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Core.Tests", "Catharsium.Trello.Core.Tests\Catharsium.Trello.Core.Tests.csproj", "{22F43AC0-1513-49CE-BFF2-E3FBE6430852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Models.Tests", "Catharsium.Trello.Models.Tests\Catharsium.Trello.Models.Tests.csproj", "{11B86676-18CE-4FB5-9E98-420404285A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Models.Tests", "Catharsium.Trello.Models.Tests\Catharsium.Trello.Models.Tests.csproj", "{11B86676-18CE-4FB5-9E98-420404285A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Console", "Catharsium.Trello.Console\Catharsium.Trello.Console.csproj", "{80DF522F-A245-41D8-A572-82CBB4CCCAB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Console", "Catharsium.Trello.Console\Catharsium.Trello.Console.csproj", "{80DF522F-A245-41D8-A572-82CBB4CCCAB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Console.Tests", "Catharsium.Trello.Console.Tests\Catharsium.Trello.Console.Tests.csproj", "{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{80DF522F-A245-41D8-A572-82CBB4CCCAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80DF522F-A245-41D8-A572-82CBB4CCCAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80DF522F-A245-41D8-A572-82CBB4CCCAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
