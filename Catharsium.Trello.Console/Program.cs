@@ -4,7 +4,6 @@ using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Console
@@ -19,7 +18,7 @@ namespace Catharsium.Trello.Console
             var configuration = builder.Build();
 
             var serviceProvider = new ServiceCollection()
-           //     .AddLogging(configure => configure.AddConsole())
+                //     .AddLogging(configure => configure.AddConsole())
                 .AddTrelloConsole(configuration)
                 .BuildServiceProvider();
             var console = serviceProvider.GetService<IConsole>();
