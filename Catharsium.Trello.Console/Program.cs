@@ -26,7 +26,7 @@ namespace Catharsium.Trello.Console
             var jsonFileReader = serviceProvider.GetService<IJsonFileReader>();
 
             var board = jsonFileReader.ReadFrom<Board>(@"D:\Cloud\OneDrive\Data\Trello\Weekly Goals.json");
-            System.Console.WriteLine(board.Name);
+            console.WriteLine(board.Name);
         }
     }
 }

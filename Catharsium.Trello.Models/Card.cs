@@ -14,7 +14,7 @@ namespace Catharsium.Trello.Models
         public DateTime DateLastActivity { get; set; }
         //desc
         //descData
-        public int DueReminder { get; set; }
+ //       public int DueReminder { get; set; }
         public string IdBoard { get; set; }
         public List<string> IdLabels { get; set; }
         public string IdList { get; set; }
