@@ -1,4 +1,5 @@
 ﻿using Catharsium.Util.Configuration.Extensions;
+using Catharsium.Util.IO._Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,8 @@ namespace Catharsium.Trello.Console._Configuration
         {
             var trelloCoreConfiguration = configuration.Load<TrelloConsoleConfiguration>();
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(provider => trelloCoreConfiguration);
+
+            services.AddIoUtilities(configuration);
 
             return services;
         }

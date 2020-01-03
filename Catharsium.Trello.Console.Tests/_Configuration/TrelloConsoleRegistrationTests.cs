@@ -17,9 +17,9 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             var serviceCollection = Substitute.For<IServiceCollection>();
             var configuration = Substitute.For<IConfiguration>();
 
-            serviceCollection.ReceivedRegistration<IJsonFileReader>();
-
             serviceCollection.AddTrelloConsole(configuration);
+
+            serviceCollection.ReceivedRegistration<IFileFactory>();
         }
     }
 }
