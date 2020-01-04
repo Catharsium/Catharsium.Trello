@@ -13,7 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Models.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Console", "Catharsium.Trello.Console\Catharsium.Trello.Console.csproj", "{80DF522F-A245-41D8-A572-82CBB4CCCAB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Console.Tests", "Catharsium.Trello.Console.Tests\Catharsium.Trello.Console.Tests.csproj", "{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Console.Tests", "Catharsium.Trello.Console.Tests\Catharsium.Trello.Console.Tests.csproj", "{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Core", "1. Core", "{EC86C319-F1C0-476A-A4F1-17F28FDD42A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Data", "2. Data", "{0109278C-45EA-4E21-B5A4-4316A7B86818}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. UI", "3. UI", "{0596E5A1-49E7-4BA0-BDB1-D16BE0D6FFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Data", "Catharsium.Trello.Data\Catharsium.Trello.Data.csproj", "{0274F711-25C3-402C-AF65-BF90F18CBC6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Data.Tests", "Catharsium.Trello.Data.Tests\Catharsium.Trello.Data.Tests.csproj", "{3B924140-952F-49B6-8044-64EE071C0FC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +55,27 @@ Global
 		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0274F711-25C3-402C-AF65-BF90F18CBC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0274F711-25C3-402C-AF65-BF90F18CBC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0274F711-25C3-402C-AF65-BF90F18CBC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0274F711-25C3-402C-AF65-BF90F18CBC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B924140-952F-49B6-8044-64EE071C0FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B924140-952F-49B6-8044-64EE071C0FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B924140-952F-49B6-8044-64EE071C0FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B924140-952F-49B6-8044-64EE071C0FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B290C2C7-F5AE-4A4D-8E4C-310922B1BB6B} = {EC86C319-F1C0-476A-A4F1-17F28FDD42A0}
+		{64EC87DF-4157-46EA-81A5-A40B8A0B9951} = {EC86C319-F1C0-476A-A4F1-17F28FDD42A0}
+		{22F43AC0-1513-49CE-BFF2-E3FBE6430852} = {EC86C319-F1C0-476A-A4F1-17F28FDD42A0}
+		{11B86676-18CE-4FB5-9E98-420404285A7E} = {EC86C319-F1C0-476A-A4F1-17F28FDD42A0}
+		{80DF522F-A245-41D8-A572-82CBB4CCCAB1} = {0596E5A1-49E7-4BA0-BDB1-D16BE0D6FFAF}
+		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98} = {0596E5A1-49E7-4BA0-BDB1-D16BE0D6FFAF}
+		{0274F711-25C3-402C-AF65-BF90F18CBC6F} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
+		{3B924140-952F-49B6-8044-64EE071C0FC1} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0139B43F-72FC-4246-B23C-AB0B931FC28A}

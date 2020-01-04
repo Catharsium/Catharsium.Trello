@@ -16,3 +16,7 @@
 /Catharsium.Trello.Console.Tests/bin/Debug/netcoreapp3.1
 /Catharsium.Trello.Console.Tests/obj
 /Catharsium.Trello.Core/bin/Debug/netstandard2.1
+/Catharsium.Trello.Data/bin/Debug/netstandard2.0
+/Catharsium.Trello.Data/obj
+/Catharsium.Trello.Data.Tests/bin/Debug/netcoreapp3.1
+/Catharsium.Trello.Data.Tests/obj
