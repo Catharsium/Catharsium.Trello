@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Util.Configuration" Version="2.1.1" />
+    <PackageReference Include="Catharsium.Util.Configuration" Version="2.1.2" />
+    <PackageReference Include="Catharsium.Util.IO" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catharsium.Trello.Models\Catharsium.Trello.Models.csproj" />
   </ItemGroup>
 
 </Project>
