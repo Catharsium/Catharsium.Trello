@@ -23,6 +23,8 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             serviceCollection.AddTrelloConsole(configuration);
 
             serviceCollection.ReceivedRegistration<IChooseBoardActionHandler, ChooseBoardActionHandler>();
+            serviceCollection.ReceivedRegistration<IChooseCardActionHandler, ChooseCardActionHandler>();
+            serviceCollection.ReceivedRegistration<IChooseListActionHandler, ChooseListActionHandler>();
 
             serviceCollection.ReceivedRegistration<IFileFactory>();
             serviceCollection.ReceivedRegistration<IBoardsRepository>();

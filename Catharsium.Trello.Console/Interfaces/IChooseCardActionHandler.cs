@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Catharsium.Trello.Console.Interfaces
 {
-    public interface IChooseBoardActionHandler
+    public interface IChooseCardActionHandler
     {
-        Board Run(IEnumerable<Board> cards);
+        Card Run(IEnumerable<Card> boards);
     }
 }

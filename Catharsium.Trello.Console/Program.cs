@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Threading.Tasks;
-using Catharsium.Trello.Console.Interfaces;
 
 namespace Catharsium.Trello.Console
 {
@@ -24,7 +23,6 @@ namespace Catharsium.Trello.Console
                 .BuildServiceProvider();
             var console = serviceProvider.GetService<IConsole>();
             var boardsRepository = serviceProvider.GetService<IBoardsRepository>();
-            var chooseBoardActionHandler = serviceProvider.GetService<IChooseBoardActionHandler>();
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
 

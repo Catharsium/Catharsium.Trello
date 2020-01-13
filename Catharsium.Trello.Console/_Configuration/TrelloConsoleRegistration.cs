@@ -16,6 +16,8 @@ namespace Catharsium.Trello.Console._Configuration
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(provider => trelloCoreConfiguration);
 
             services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
+            services.AddScoped<IChooseCardActionHandler, ChooseCardActionHandler>();
+            services.AddScoped<IChooseListActionHandler, ChooseListActionHandler>();
 
             services.AddTrelloCore(configuration);
             services.AddTrelloData(configuration);
