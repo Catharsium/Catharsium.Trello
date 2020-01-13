@@ -1,5 +1,5 @@
 ﻿using Catharsium.Trello.Models;
-using Catharsium.Trello.Models.Interfaces;
+using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace Catharsium.Trello.Data.Repository
             var directory = this.fileFactory.CreateDirectory(folder);
             if (directory.Exists) {
                 var result = new List<Board>();
-                foreach (var file in directory.GetFiles(".json")) {
+                foreach (var file in directory.GetFiles("*.json")) {
                     result.Add(this.jsonFileReader.ReadFrom<Board>(file));
                 }
 

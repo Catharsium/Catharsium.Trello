@@ -1,4 +1,5 @@
 ﻿using Catharsium.Trello.Console._Configuration;
+using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             serviceCollection.AddTrelloConsole(configuration);
 
             serviceCollection.ReceivedRegistration<IFileFactory>();
+            serviceCollection.ReceivedRegistration<IBoardsRepository>();
         }
     }
 }

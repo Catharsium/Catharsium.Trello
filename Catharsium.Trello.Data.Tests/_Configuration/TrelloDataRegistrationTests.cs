@@ -1,4 +1,7 @@
 ﻿using Catharsium.Trello.Core._Configuration;
+using Catharsium.Trello.Data.Repository;
+using Catharsium.Trello.Models.Interfaces.Data;
+using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,6 +19,7 @@ namespace Catharsium.Trello.Core.Tests._Configuration
             var configuration = Substitute.For<IConfiguration>();
 
             serviceCollection.AddTrelloData(configuration);
+            serviceCollection.ReceivedRegistration<IBoardsRepository, BoardsRepository>();
         }
     }
 }

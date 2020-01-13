@@ -13,8 +13,10 @@ namespace Catharsium.Trello.Console._Configuration
             var trelloCoreConfiguration = configuration.Load<TrelloConsoleConfiguration>();
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(provider => trelloCoreConfiguration);
 
-            services.AddIoUtilities(configuration);
             services.AddTrelloCore(configuration);
+            services.AddTrelloData(configuration);
+
+            services.AddIoUtilities(configuration);
 
             return services;
         }

@@ -1,4 +1,6 @@
-﻿using Catharsium.Util.Configuration.Extensions;
+﻿using Catharsium.Trello.Data.Repository;
+using Catharsium.Trello.Models.Interfaces.Data;
+using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +12,8 @@ namespace Catharsium.Trello.Core._Configuration
         {
             var trelloCoreConfiguration = configuration.Load<TrelloDataConfiguration>();
             services.AddSingleton<TrelloDataConfiguration, TrelloDataConfiguration>(provider => trelloCoreConfiguration);
+
+            services.AddTransient<IBoardsRepository, BoardsRepository>();
 
             return services;
         }

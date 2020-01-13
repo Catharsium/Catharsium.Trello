@@ -1,4 +1,5 @@
-﻿using Catharsium.Util.Configuration.Extensions;
+﻿using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,8 @@ namespace Catharsium.Trello.Core._Configuration
         {
             var trelloCoreConfiguration = configuration.Load<TrelloCoreConfiguration>();
             services.AddSingleton<TrelloCoreConfiguration, TrelloCoreConfiguration>(provider => trelloCoreConfiguration);
+
+            services.AddScoped<ICreationDateRetriever, CreationDateRetriever>();
 
             return services;
         }

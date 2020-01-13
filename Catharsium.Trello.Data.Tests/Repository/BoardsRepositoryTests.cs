@@ -25,7 +25,7 @@ namespace Catharsium.Trello.Data.Tests.Repository
             var expected = new Board();
             var directory = Substitute.For<IDirectory>();
             directory.Exists.Returns(true);
-            directory.GetFiles(".json").Returns(files);
+            directory.GetFiles("*.json").Returns(files);
             this.GetDependency<IFileFactory>().CreateDirectory(this.Folder).Returns(directory);
             this.GetDependency<IJsonFileReader>().ReadFrom<Board>(Arg.Is<IFile>(f => files.Contains(f))).Returns(expected);
 

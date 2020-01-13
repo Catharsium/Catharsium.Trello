@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Console._Configuration;
-using Catharsium.Trello.Models;
+using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,10 +23,14 @@ namespace Catharsium.Trello.Console
                 .AddTrelloConsole(configuration)
                 .BuildServiceProvider();
             var console = serviceProvider.GetService<IConsole>();
-            var jsonFileReader = serviceProvider.GetService<IJsonFileReader>();
+            var boardsRepository = serviceProvider.GetService<IBoardsRepository>();
 
-            var board = jsonFileReader.ReadFrom<Board>(@"D:\Cloud\OneDrive\Data\Trello\Weekly Goals.json");
-            console.WriteLine(board.Name);
+            var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
+
+            var boards = boardsRepository.GetAll(@"E:\Cloud\OneDrive\Data\Trello");
+            foreach (var board in boards) {
+                console.WriteLine($"{board.Name} containing {board.Lists.Count} lists, {board.Cards.Count} cards (Created: {dateRetriever.FindCreationDate(board.Id)})");
+            }
         }
     }
 }
