@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Trello.Models
 {
@@ -47,5 +48,13 @@ namespace Catharsium.Trello.Models
         //public object CustomFields { get; set; }
         //public List<object> Memberships { get; set; }
         //public object PluginData { get; set; }
+
+
+        public override string ToString()
+        {
+            var lists = this.Lists?.Count ?? 0;
+            var cards = this.Cards?.Count ?? 0;
+            return $"'{this.Name}' ({lists} lists, {cards} cards)";
+        }
     }
 }

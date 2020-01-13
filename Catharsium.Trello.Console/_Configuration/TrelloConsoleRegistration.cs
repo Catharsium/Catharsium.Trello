@@ -1,4 +1,6 @@
-﻿using Catharsium.Trello.Core._Configuration;
+﻿using Catharsium.Trello.Console.ActionHandlers;
+using Catharsium.Trello.Console.Interfaces;
+using Catharsium.Trello.Core._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +14,8 @@ namespace Catharsium.Trello.Console._Configuration
         {
             var trelloCoreConfiguration = configuration.Load<TrelloConsoleConfiguration>();
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(provider => trelloCoreConfiguration);
+
+            services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
 
             services.AddTrelloCore(configuration);
             services.AddTrelloData(configuration);

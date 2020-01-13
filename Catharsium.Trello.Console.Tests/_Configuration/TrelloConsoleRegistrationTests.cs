@@ -1,4 +1,6 @@
 ﻿using Catharsium.Trello.Console._Configuration;
+using Catharsium.Trello.Console.ActionHandlers;
+using Catharsium.Trello.Console.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing.Extensions;
@@ -19,6 +21,8 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             var configuration = Substitute.For<IConfiguration>();
 
             serviceCollection.AddTrelloConsole(configuration);
+
+            serviceCollection.ReceivedRegistration<IChooseBoardActionHandler, ChooseBoardActionHandler>();
 
             serviceCollection.ReceivedRegistration<IFileFactory>();
             serviceCollection.ReceivedRegistration<IBoardsRepository>();

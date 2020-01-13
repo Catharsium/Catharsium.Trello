@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using System.Threading.Tasks;
+using Catharsium.Trello.Console.Interfaces;
 
 namespace Catharsium.Trello.Console
 {
@@ -19,17 +20,17 @@ namespace Catharsium.Trello.Console
             var configuration = builder.Build();
 
             var serviceProvider = new ServiceCollection()
-                //     .AddLogging(configure => configure.AddConsole())
                 .AddTrelloConsole(configuration)
                 .BuildServiceProvider();
             var console = serviceProvider.GetService<IConsole>();
             var boardsRepository = serviceProvider.GetService<IBoardsRepository>();
+            var chooseBoardActionHandler = serviceProvider.GetService<IChooseBoardActionHandler>();
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
 
-            var boards = boardsRepository.GetAll(@"E:\Cloud\OneDrive\Data\Trello");
+            var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello");
             foreach (var board in boards) {
-                console.WriteLine($"{board.Name} containing {board.Lists.Count} lists, {board.Cards.Count} cards (Created: {dateRetriever.FindCreationDate(board.Id)})");
+                console.WriteLine($"{board} (Created: {dateRetriever.FindCreationDate(board.Id)})");
             }
         }
     }
