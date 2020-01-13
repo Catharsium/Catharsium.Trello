@@ -23,7 +23,7 @@ namespace Catharsium.Trello.Core.Filters
         {
             var cardDate = this.creationDateRetriever.FindCreationDate(card.Id);
             return this.fromDate <= cardDate &&
-                   cardDate >= this.toDate;
+                   cardDate <= this.toDate;
         }
     }
 }
