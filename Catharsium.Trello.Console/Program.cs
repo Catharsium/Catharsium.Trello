@@ -39,7 +39,7 @@ namespace Catharsium.Trello.Console
 
             var startDate = dateRetriever.FindCreationDate(goalsBoard.Id);
             var endDate = startDate.Value.AddDays(7);
-            while (endDate < DateTime.Now) {
+            while (endDate.AddDays(-7) < DateTime.Now) {
                 var dateFilter = cardFilterFactory.CreateDataFilter(startDate.Value, endDate);
                 var filteredCards = goalsBoard.Cards.Where(c => dateFilter.Includes(c)).ToList();
                 var openCards = filteredCards.Where(c => openLists.Contains(c.IdList));
