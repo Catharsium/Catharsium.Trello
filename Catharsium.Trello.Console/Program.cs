@@ -4,14 +4,15 @@ using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Catharsium.Trello.Console
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -23,12 +24,31 @@ namespace Catharsium.Trello.Console
                 .BuildServiceProvider();
             var console = serviceProvider.GetService<IConsole>();
             var boardsRepository = serviceProvider.GetService<IBoardsRepository>();
+            var cardFilterFactory = serviceProvider.GetService<ICardFilterFactory>();
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
 
-            var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello");
+            var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello").ToList();
             foreach (var board in boards) {
                 console.WriteLine($"{board} (Created: {dateRetriever.FindCreationDate(board.Id)})");
+            }
+
+            var goalsBoard = boards.FirstOrDefault(b => b.Name == "Weekly Goals");
+            var openLists = goalsBoard.Lists.Where(l => l.Name == "Defining" || l.Name == "Planning" || l.Name == "Staging" || l.Name == "Doing")
+                .Select(l => l.Id);
+
+            var startDate = dateRetriever.FindCreationDate(goalsBoard.Id);
+            var endDate = startDate.Value.AddDays(7);
+            while (endDate < DateTime.Now) {
+                var dateFilter = cardFilterFactory.CreateDataFilter(startDate.Value, endDate);
+                var filteredCards = goalsBoard.Cards.Where(c => dateFilter.Includes(c)).ToList();
+                var openCards = filteredCards.Where(c => openLists.Contains(c.IdList));
+
+                var weekFilter = cardFilterFactory.CreateDataFilter(endDate.AddDays(-7), endDate);
+                var otherCards = filteredCards.Where(c => weekFilter.Includes(c) && !openLists.Contains(c.IdList));
+                console.WriteLine($"Week {endDate.AddDays(-7): d MMM yyyy} to {endDate:d MMM yyyy}");
+                console.WriteLine($"{openCards.Count()} open from {filteredCards.Count} total, completed {otherCards.Count()}");
+                endDate = endDate.AddDays(7);
             }
         }
     }

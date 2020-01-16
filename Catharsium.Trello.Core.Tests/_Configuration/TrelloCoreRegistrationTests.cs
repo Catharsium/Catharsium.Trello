@@ -1,4 +1,5 @@
 ﻿using Catharsium.Trello.Core._Configuration;
+using Catharsium.Trello.Core.Filters;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,8 @@ namespace Catharsium.Trello.Core.Tests._Configuration
             var configuration = Substitute.For<IConfiguration>();
 
             serviceCollection.AddTrelloCore(configuration);
+
+            serviceCollection.ReceivedRegistration<ICardFilterFactory, CardFilterFactory>();
 
             serviceCollection.ReceivedRegistration<ICreationDateRetriever, CreationDateRetriever>();
         }
