@@ -1,10 +1,11 @@
 ﻿using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Util.Filters;
 using System;
 
 namespace Catharsium.Trello.Core.Filters
 {
-    public class DateFilter : ICardFilter
+    public class DateFilter : IFilter<Card>
     {
         private readonly ICreationDateRetriever creationDateRetriever;
         private readonly DateTime fromDate;
