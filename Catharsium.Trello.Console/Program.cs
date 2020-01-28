@@ -28,6 +28,7 @@ namespace Catharsium.Trello.Console
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
 
+            var previousOpenCards = 0;
             var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello").ToList();
             foreach (var board in boards) {
                 console.WriteLine($"{board} (Created: {dateRetriever.FindCreationDate(board.Id)})");
@@ -41,13 +42,19 @@ namespace Catharsium.Trello.Console
             while (endDate.AddDays(-7) < DateTime.Now) {
                 var dateFilter = cardFilterFactory.CreateDataFilter(startDate.Value, endDate);
                 var filteredCards = goalsBoard.Cards.Where(c => dateFilter.Includes(c)).ToList();
-                var openCards = filteredCards.Where(c => openLists.Contains(c.IdList));
+                var openCards = filteredCards.Where(c => openLists.Contains(c.IdList)).ToList();
 
                 var weekFilter = cardFilterFactory.CreateDataFilter(endDate.AddDays(-7), endDate);
                 var otherCards = filteredCards.Where(c => weekFilter.Includes(c) && !openLists.Contains(c.IdList));
+                var percentage = filteredCards.Any() ?
+                    Math.Round((decimal)openCards.Count / filteredCards.Count * 100, 2) :
+                    0;
+                var delta = openCards.Count - previousOpenCards;
+                var deltaString = delta > 0 ? "+ " + delta : delta.ToString();
                 console.WriteLine($"Week {endDate.AddDays(-7): d MMM yyyy} to {endDate:d MMM yyyy}");
-                console.WriteLine($"{openCards.Count()} open from {filteredCards.Count} total, completed {otherCards.Count()}");
+                console.WriteLine($"{openCards.Count} open from {filteredCards.Count} total ({percentage} %), completed {otherCards.Count()} ({deltaString})");
                 endDate = endDate.AddDays(7);
+                previousOpenCards = openCards.Count;
             }
         }
     }
