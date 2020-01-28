@@ -34,8 +34,7 @@ namespace Catharsium.Trello.Console
             }
 
             var goalsBoard = boards.FirstOrDefault(b => b.Name == "Weekly Goals");
-            var openLists = goalsBoard.Lists.Where(l => l.Name == "Defining" || l.Name == "Planning" || l.Name == "Staging" || l.Name == "Doing")
-                .Select(l => l.Id);
+            var openLists = goalsBoard.Lists.Where(l => !l.Name.Contains("Enjoying")).Select(l => l.Id);
 
             var startDate = dateRetriever.FindCreationDate(goalsBoard.Id);
             var endDate = startDate.Value.AddDays(7);

@@ -1,5 +1,5 @@
 ﻿using Catharsium.Trello.Console.ActionHandlers;
-using Catharsium.Trello.Console.Interfaces;
+using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;

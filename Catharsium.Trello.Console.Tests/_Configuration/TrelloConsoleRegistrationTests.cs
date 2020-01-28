@@ -1,6 +1,6 @@
 ﻿using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers;
-using Catharsium.Trello.Console.Interfaces;
+using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing.Extensions;

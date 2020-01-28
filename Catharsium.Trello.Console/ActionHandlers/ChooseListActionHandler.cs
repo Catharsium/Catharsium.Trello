@@ -1,4 +1,4 @@
-﻿using Catharsium.Trello.Console.Interfaces;
+﻿using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models;
 using Catharsium.Util.IO.Interfaces;
 using System.Collections.Generic;
