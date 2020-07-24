@@ -21,9 +21,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Data", "2. Data", "{0109
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. UI", "3. UI", "{0596E5A1-49E7-4BA0-BDB1-D16BE0D6FFAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Data", "Catharsium.Trello.Data\Catharsium.Trello.Data.csproj", "{0274F711-25C3-402C-AF65-BF90F18CBC6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Data", "Catharsium.Trello.Data\Catharsium.Trello.Data.csproj", "{0274F711-25C3-402C-AF65-BF90F18CBC6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Data.Tests", "Catharsium.Trello.Data.Tests\Catharsium.Trello.Data.Tests.csproj", "{3B924140-952F-49B6-8044-64EE071C0FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Data.Tests", "Catharsium.Trello.Data.Tests\Catharsium.Trello.Data.Tests.csproj", "{3B924140-952F-49B6-8044-64EE071C0FC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Plugins", "4. Plugins", "{928D15CF-26AF-4DCA-A26E-D35FC19296B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.WeeklyGoals", "Plugins\Catharsium.Trello.Plugins.WeeklyGoals\Catharsium.Trello.Plugins.WeeklyGoals.csproj", "{D4DE7AEA-3339-4D91-A512-7826D8AA5494}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.WeeklyGoals.Tests", "Plugins\Catharsium.Trello.Plugins.WeeklyGoals.Tests\Catharsium.Trello.Plugins.WeeklyGoals.Tests.csproj", "{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Api.Client", "Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj", "{6665D416-C5A6-4240-85A9-E634826B9DA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Api.Client.Tests", "Catharsium.Trello.Api.Tests\Catharsium.Trello.Api.Client.Tests.csproj", "{7AD76EF1-4742-4BF6-8719-C649DEA3D609}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +73,22 @@ Global
 		{3B924140-952F-49B6-8044-64EE071C0FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B924140-952F-49B6-8044-64EE071C0FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B924140-952F-49B6-8044-64EE071C0FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DE7AEA-3339-4D91-A512-7826D8AA5494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DE7AEA-3339-4D91-A512-7826D8AA5494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DE7AEA-3339-4D91-A512-7826D8AA5494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DE7AEA-3339-4D91-A512-7826D8AA5494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6665D416-C5A6-4240-85A9-E634826B9DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6665D416-C5A6-4240-85A9-E634826B9DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6665D416-C5A6-4240-85A9-E634826B9DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6665D416-C5A6-4240-85A9-E634826B9DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +102,10 @@ Global
 		{12CDB25B-CE0D-4E28-B459-8A99B3A1CC98} = {0596E5A1-49E7-4BA0-BDB1-D16BE0D6FFAF}
 		{0274F711-25C3-402C-AF65-BF90F18CBC6F} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
 		{3B924140-952F-49B6-8044-64EE071C0FC1} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
+		{D4DE7AEA-3339-4D91-A512-7826D8AA5494} = {928D15CF-26AF-4DCA-A26E-D35FC19296B7}
+		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8} = {928D15CF-26AF-4DCA-A26E-D35FC19296B7}
+		{6665D416-C5A6-4240-85A9-E634826B9DA0} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
+		{7AD76EF1-4742-4BF6-8719-C649DEA3D609} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0139B43F-72FC-4246-B23C-AB0B931FC28A}

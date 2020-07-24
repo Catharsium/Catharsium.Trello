@@ -1,16 +1,13 @@
-﻿using Catharsium.Trello.Data._Configuration;
-using Catharsium.Trello.Data.Repository;
-using Catharsium.Trello.Models.Interfaces.Data;
+﻿using Catharsium.Trello.Api.Client._Configuration;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Trello.Data.Tests._Configuration
+namespace Catharsium.Trello.Api.Client.Tests._Configuration
 {
-    [TestClass]
-    public class TrelloDataRegistrationTests
+    public class TrelloApiClientRegistrationTests
     {
         [TestMethod]
         public void AddCoreLogic_RegistersDependencies()
@@ -18,8 +15,8 @@ namespace Catharsium.Trello.Data.Tests._Configuration
             var serviceCollection = Substitute.For<IServiceCollection>();
             var configuration = Substitute.For<IConfiguration>();
 
-            serviceCollection.AddTrelloData(configuration);
-            serviceCollection.ReceivedRegistration<IBoardsRepository, BoardsRepository>();
+            serviceCollection.AddTrelloApiClient(configuration);
+            serviceCollection.ReceivedRegistration<ITrelloRestClient, TrelloRestClient>();
         }
     }
 }

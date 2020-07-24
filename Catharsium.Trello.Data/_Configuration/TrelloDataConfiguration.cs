@@ -1,4 +1,4 @@
-﻿namespace Catharsium.Trello.Core._Configuration
+﻿namespace Catharsium.Trello.Data._Configuration
 {
     public class TrelloDataConfiguration { }
 }

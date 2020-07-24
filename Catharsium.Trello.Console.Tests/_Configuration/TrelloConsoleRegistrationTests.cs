@@ -1,4 +1,6 @@
-﻿using Catharsium.Trello.Console._Configuration;
+﻿using Catharsium.Trello.Api;
+using Catharsium.Trello.Api.Client;
+using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Data;
@@ -26,6 +28,7 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             serviceCollection.ReceivedRegistration<IChooseCardActionHandler, ChooseCardActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseListActionHandler, ChooseListActionHandler>();
 
+            serviceCollection.ReceivedRegistration<ITrelloRestClient>();
             serviceCollection.ReceivedRegistration<IFileFactory>();
             serviceCollection.ReceivedRegistration<IBoardsRepository>();
         }

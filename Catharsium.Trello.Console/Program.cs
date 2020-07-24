@@ -7,12 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Catharsium.Trello.Api;
+using Catharsium.Trello.Api.Client;
 
 namespace Catharsium.Trello.Console
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -27,6 +30,10 @@ namespace Catharsium.Trello.Console
             var cardFilterFactory = serviceProvider.GetService<ICardFilterFactory>();
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
+            //D:\Cloud\OneDrive\Code\Projects\Catharsium.Trello\Plugins\Catharsium.Trello.Plugins.WeeklyGoals\bin\Debug\netstandard2.0
+            var token = console.AskForText("Supply your token:");
+            var client = serviceProvider.GetService<ITrelloRestClient>();
+            await client.Get(token);
 
             var previousOpenCards = 0;
             var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello").ToList();

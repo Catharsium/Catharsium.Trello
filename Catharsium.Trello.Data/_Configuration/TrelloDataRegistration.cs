@@ -4,7 +4,7 @@ using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Catharsium.Trello.Core._Configuration
+namespace Catharsium.Trello.Data._Configuration
 {
     public static class TrelloDataRegistration
     {

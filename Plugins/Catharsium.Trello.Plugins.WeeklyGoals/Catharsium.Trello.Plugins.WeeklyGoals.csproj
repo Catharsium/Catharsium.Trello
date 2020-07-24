@@ -4,13 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Catharsium.Util.Configuration" Version="2.5.1" />
-    <PackageReference Include="Catharsium.Util.IO" Version="2.5.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Catharsium.Trello.Models\Catharsium.Trello.Models.csproj" />
+    <ProjectReference Include="..\..\Catharsium.Trello.Models\Catharsium.Trello.Models.csproj" />
   </ItemGroup>
 
 </Project>

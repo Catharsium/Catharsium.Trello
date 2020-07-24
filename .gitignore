@@ -20,3 +20,11 @@
 /Catharsium.Trello.Data/obj
 /Catharsium.Trello.Data.Tests/bin/Debug/netcoreapp3.1
 /Catharsium.Trello.Data.Tests/obj
+/Catharsium.Trello.Api/obj
+/Catharsium.Trello.Api.Tests/obj
+/Plugins/Catharsium.Trello.Plugins.WeeklyGoals/bin/Debug/netstandard2.0
+/Plugins/Catharsium.Trello.Plugins.WeeklyGoals/obj
+/Plugins/Catharsium.Trello.Plugins.WeeklyGoals.Tests/bin/Debug/netcoreapp3.1
+/Plugins/Catharsium.Trello.Plugins.WeeklyGoals.Tests/obj
+/Catharsium.Trello.Api/bin/Debug/netstandard2.0
+/Catharsium.Trello.Api.Tests/bin/Debug/netcoreapp3.1
