@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Api;
 using Catharsium.Trello.Api.Client;
+using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;

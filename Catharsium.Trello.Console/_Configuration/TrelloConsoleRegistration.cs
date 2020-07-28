@@ -1,10 +1,15 @@
-﻿using Catharsium.Trello.Api.Client._Configuration;
+﻿using System.Net.Http;
+using Catharsium.Trello.Api.Client;
+using Catharsium.Trello.Api.Client._Configuration;
+using Catharsium.Trello.Api.Client.Clients;
+using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Data._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
+using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +25,11 @@ namespace Catharsium.Trello.Console._Configuration
             services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
             services.AddScoped<IChooseCardActionHandler, ChooseCardActionHandler>();
             services.AddScoped<IChooseListActionHandler, ChooseListActionHandler>();
+
+            services.AddTransient<ITrelloRestClient, TrelloRestClient>(provider => new TrelloRestClient(
+                new HttpClient(), 
+                provider.GetService<TrelloApiClientConfiguration>(),
+                provider.GetService<IConsole>().AskForText("Enter your Trello Token:")));
 
             services.AddTrelloCore(configuration);
             services.AddTrelloApiClient(configuration);

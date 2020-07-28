@@ -1,4 +1,5 @@
-﻿using Catharsium.Trello.Console._Configuration;
+﻿using Catharsium.Trello.Api.Client.Interfaces;
+using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
@@ -8,8 +9,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Catharsium.Trello.Api;
-using Catharsium.Trello.Api.Client;
 
 namespace Catharsium.Trello.Console
 {
@@ -31,9 +30,9 @@ namespace Catharsium.Trello.Console
 
             var dateRetriever = serviceProvider.GetService<ICreationDateRetriever>();
             //D:\Cloud\OneDrive\Code\Projects\Catharsium.Trello\Plugins\Catharsium.Trello.Plugins.WeeklyGoals\bin\Debug\netstandard2.0
-            var token = console.AskForText("Supply your token:");
-            var client = serviceProvider.GetService<ITrelloRestClient>();
-            await client.Get(token);
+            var client = serviceProvider.GetService<IBoardsClient>();
+            var result = await client.GetList();
+            console.WriteLine($"Read {result.Length} boards from API");
 
             var previousOpenCards = 0;
             var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello").ToList();
