@@ -1,10 +1,9 @@
-﻿using Catharsium.Trello.Api;
-using Catharsium.Trello.Api.Client;
-using Catharsium.Trello.Api.Client.Interfaces;
+﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Data;
+using Catharsium.Util.Interfaces;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +24,8 @@ namespace Catharsium.Trello.Console.Tests._Configuration
 
             serviceCollection.AddTrelloConsole(configuration);
 
+            serviceCollection.ReceivedRegistration<IChooseActionHandler, ChooseActionHandler>();
+            serviceCollection.ReceivedRegistration<IActionHandler, BrowseActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseBoardActionHandler, ChooseBoardActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseCardActionHandler, ChooseCardActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseListActionHandler, ChooseListActionHandler>();
@@ -32,6 +33,7 @@ namespace Catharsium.Trello.Console.Tests._Configuration
             serviceCollection.ReceivedRegistration<ITrelloRestClient>();
             serviceCollection.ReceivedRegistration<IFileFactory>();
             serviceCollection.ReceivedRegistration<IBoardsRepository>();
+            serviceCollection.ReceivedRegistration<ITypesRetriever>();
         }
     }
 }

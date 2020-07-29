@@ -1,17 +1,17 @@
-﻿using System.Net.Http;
-using Catharsium.Trello.Api.Client;
-using Catharsium.Trello.Api.Client._Configuration;
+﻿using Catharsium.Trello.Api.Client._Configuration;
 using Catharsium.Trello.Api.Client.Clients;
 using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Data._Configuration;
+using Catharsium.Util._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
 using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
 
 namespace Catharsium.Trello.Console._Configuration
 {
@@ -22,7 +22,9 @@ namespace Catharsium.Trello.Console._Configuration
             var trelloCoreConfiguration = configuration.Load<TrelloConsoleConfiguration>();
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(_ => trelloCoreConfiguration);
 
+            services.AddScoped<IChooseActionHandler, ChooseActionHandler>();
             services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
+            services.AddScoped<IActionHandler, BrowseActionHandler>();
             services.AddScoped<IChooseCardActionHandler, ChooseCardActionHandler>();
             services.AddScoped<IChooseListActionHandler, ChooseListActionHandler>();
 
@@ -35,6 +37,7 @@ namespace Catharsium.Trello.Console._Configuration
             services.AddTrelloApiClient(configuration);
             services.AddTrelloData(configuration);
 
+            services.AddCatharsiumUtilities(configuration);
             services.AddIoUtilities(configuration);
 
             return services;

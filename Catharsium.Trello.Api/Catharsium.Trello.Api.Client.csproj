@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Util.Configuration" Version="2.5.1" />
-    <PackageReference Include="Catharsium.Util.Web" Version="2.5.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Catharsium.Util.Configuration" Version="2.5.3" />
+    <PackageReference Include="Catharsium.Util.Web" Version="2.5.3" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 

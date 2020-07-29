@@ -1,4 +1,5 @@
-﻿using Catharsium.Trello.Api.Client._Configuration;
+﻿using AutoMapper;
+using Catharsium.Trello.Api.Client._Configuration;
 using Catharsium.Trello.Api.Client.Clients;
 using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Util.Testing.Extensions;
@@ -20,6 +21,7 @@ namespace Catharsium.Trello.Api.Client.Tests._Configuration
             serviceCollection.AddTrelloApiClient(configuration);
             serviceCollection.ReceivedRegistration<ITrelloRestClient, TrelloRestClient>();
             serviceCollection.ReceivedRegistration<IBoardsClient, BoardsClient>();
+            serviceCollection.ReceivedRegistration<IMapper>();
         }
     }
 }

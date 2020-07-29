@@ -1,19 +1,33 @@
-﻿using Catharsium.Trello.Console.ActionHandlers.Interfaces;
+﻿using Catharsium.Trello.Api.Client.Interfaces;
+using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models;
 using Catharsium.Util.IO.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Console.ActionHandlers
 {
     public class ChooseBoardActionHandler : IChooseBoardActionHandler
     {
+        private readonly IBoardsClient boardsClient;
         private readonly IConsole console;
 
 
-        public ChooseBoardActionHandler(IConsole console)
+        public ChooseBoardActionHandler(IBoardsClient boardsClient, IConsole console)
         {
+            this.boardsClient = boardsClient;
             this.console = console;
+        }
+
+
+        public string FriendlyName => "Choose a board";
+
+
+        public async Task Run()
+        {
+            var boards = await this.boardsClient.GetAll();
+            var selectedBoard = this.Run(boards);
         }
 
 
