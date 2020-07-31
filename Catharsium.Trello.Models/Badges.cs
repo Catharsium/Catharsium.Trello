@@ -2,12 +2,7 @@
 {
     public class Badges
     {
-        //"attachmentsByType": {
-        //    "trello": {
-        //        "board": 0,
-        //        "card": 0
-        //    }
-        //},
+        public ApiAttachmentsByType AttachmentsByType { get; set; }
         public bool Location { get; set; }
         public int Votes { get; set; }
         public bool ViewingMemberVoted { get; set; }
@@ -15,10 +10,11 @@
         public string Fogbugz { get; set; }
         public int CheckItems { get; set; }
         public int CheckItemsChecked { get; set; }
+        public object CheckItemsEarliestDue { get; set; }
         public int Comments { get; set; }
         public int Attachments { get; set; }
         public bool Description { get; set; }
-        //"due": null,
+        public object Due { get; set; }
         public bool DueComplete { get; set; }
     }
 }

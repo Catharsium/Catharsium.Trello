@@ -1,11 +1,11 @@
-﻿using Catharsium.Trello.Console.ActionHandlers;
+﻿using Catharsium.Trello.Console.ActionHandlers.SubActions;
 using Catharsium.Trello.Models;
 using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Catharsium.Trello.Console.Tests.ActionHandlers
+namespace Catharsium.Trello.Console.Tests.ActionHandlers.SubActions
 {
     [TestClass]
     public class ChooseBoardActionHandlerTests : TestFixture<ChooseBoardActionHandler>

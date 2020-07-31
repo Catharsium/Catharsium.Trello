@@ -2,6 +2,8 @@
 using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
+using Catharsium.Trello.Console.ActionHandlers.SubActions;
+using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.Interfaces;
 using Catharsium.Util.IO.Interfaces;
@@ -26,6 +28,8 @@ namespace Catharsium.Trello.Console.Tests._Configuration
 
             serviceCollection.ReceivedRegistration<IChooseActionHandler, ChooseActionHandler>();
             serviceCollection.ReceivedRegistration<IActionHandler, BrowseActionHandler>();
+            serviceCollection.ReceivedRegistration<IActionHandler, CreateActionHandler>();
+            serviceCollection.ReceivedRegistration<IActionHandler, ImportActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseBoardActionHandler, ChooseBoardActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseCardActionHandler, ChooseCardActionHandler>();
             serviceCollection.ReceivedRegistration<IChooseListActionHandler, ChooseListActionHandler>();

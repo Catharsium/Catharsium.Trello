@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Catharsium.Trello.Models
 {
@@ -14,47 +13,70 @@ namespace Catharsium.Trello.Models
 
         public string IdOrganisation { get; set; }
 
-        //public List<object> Limits { get; set; }
-        public bool Pinned { get; set; }
+        public List<object> Limits { get; set; }
+        public object Pinned { get; set; }
         public bool Starred { get; set; }
 
         public string Url { get; set; }
 
-        //public List<object> Prefs {get;set;}
+        public Preferences Prefs { get; set; }
+        public string IdOrganization { get; set; }
+        public string IdEnterprise { get; set; }
+        public string IdBoardSource { get; set; }
         public string ShortLink { get; set; }
 
         public bool Subscribed { get; set; }
 
-        //public object Powerups { get; set; }
-        public DateTime DateLastActivity { get; set; }
-        public DateTime DateLastView { get; set; }
+        public DateTime? DateLastActivity { get; set; }
+        public DateTime? DateLastView { get; set; }
 
+        public Dictionary<string, string> LabelNames { get; set; }
         public string ShortUrl { get; set; }
-
-        //public object IdTags { get; set; }
-        //       public DateTime DatePluginDisabled { get; set; }
-        //public object CreationMethod { get; set; }
-        //public int IxUpdate { get; set; }
-        //       public object TemplateGallery { get; set; }
+        
+        public List<object> PowerUps { get; set; }
+        public List<object> IdTags { get; set; }
+        public DateTime? DatePluginDisable { get; set; }
+        public object CreationMethod { get; set; }
+        public int IxUpdate { get; set; }
+        public object TemplateGallery { get; set; }
+        public List<object> PremiumFeatures { get; set; }
         public bool EnterpriseOwned { get; set; }
-        public List<Action> Actions { get; set; }
-        public List<Card> Cards { get; set; }
-        public List<Label> Labels { get; set; }
 
-        public List<List> Lists { get; set; }
+        private List<Action> actions;
+        public List<Action> Actions {
+            get => this.actions ?? (this.actions = new List<Action>());
+            set => this.actions = value;
+        }
 
-        //public List<object> Members { get; set; }
-        public List<Checklist> Checklists { get; set; }
-        //public object CustomFields { get; set; }
-        //public List<object> Memberships { get; set; }
-        //public object PluginData { get; set; }
+        private List<Card> cards;
+        public List<Card> Cards {
+            get => this.cards ?? (this.cards = new List<Card>());
+            set => this.cards = value;
+        }
 
+        private List<List> lists;
+        public List<List> Lists {
+            get => this.lists ?? (this.lists = new List<List>());
+            set => this.lists = value;
+        }
+
+        private List<Checklist> checklists;
+        public List<Checklist> Checklists {
+            get => this.checklists ?? (this.checklists = new List<Checklist>());
+            set => this.checklists = value;
+        }
+
+        private List<Membership> memberships;
+        public List<Membership> Memberships {
+            get => this.memberships ?? (this.memberships = new List<Membership>());
+            set => this.memberships = value;
+        }
+
+        
 
         public override string ToString()
         {
-            var lists = this.Lists?.Count ?? 0;
-            var cards = this.Cards?.Count ?? 0;
-            return $"'{this.Name}' ({lists} lists, {cards} cards)";
+            return $"'{this.Name}' ({this.Lists.Count} lists, {this.Cards.Count} cards)";
         }
     }
 }

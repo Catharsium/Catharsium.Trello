@@ -3,6 +3,7 @@ using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Catharsium.Trello.Data.Repository
 {
@@ -10,12 +11,14 @@ namespace Catharsium.Trello.Data.Repository
     {
         private readonly IFileFactory fileFactory;
         private readonly IJsonFileReader jsonFileReader;
+        private readonly IJsonFileWriter jsonFileWriter;
 
 
-        public BoardsRepository(IFileFactory fileFactory, IJsonFileReader jsonFileReader)
+        public BoardsRepository(IFileFactory fileFactory, IJsonFileReader jsonFileReader, IJsonFileWriter jsonFileWriter)
         {
             this.fileFactory = fileFactory;
             this.jsonFileReader = jsonFileReader;
+            this.jsonFileWriter = jsonFileWriter;
         }
 
 
@@ -23,15 +26,26 @@ namespace Catharsium.Trello.Data.Repository
         {
             var directory = this.fileFactory.CreateDirectory(folder);
             if (directory.Exists) {
-                var result = new List<Board>();
-                foreach (var file in directory.GetFiles("*.json")) {
-                    result.Add(this.jsonFileReader.ReadFrom<Board>(file));
-                }
-
-                return result;
+                return directory.GetFiles("*.json").Select(f => this.jsonFileReader.ReadFrom<Board>(f)).ToList();
             }
 
             return Array.Empty<Board>();
+        }
+
+
+        public void Store(Board board, string folder)
+        {
+            var directory = this.fileFactory.CreateDirectory(folder);
+            if (!directory.Exists) {
+                directory.Create();
+            }
+
+            var file = this.fileFactory.CreateFile($"{folder}/{board.Name} ({DateTime.Now:yyyy-MM-dd}).json");
+            if (file.Exists) {
+                file.Delete();
+            }
+
+            this.jsonFileWriter.Write(board, file);
         }
     }
 }

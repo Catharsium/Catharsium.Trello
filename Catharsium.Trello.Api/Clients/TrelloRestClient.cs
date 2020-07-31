@@ -1,7 +1,8 @@
 ﻿using Catharsium.Trello.Api.Client._Configuration;
 using Catharsium.Trello.Api.Client.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -32,11 +33,16 @@ namespace Catharsium.Trello.Api.Client.Clients
         }
 
 
-        public async Task<string> Post<T>(T data)
+        public async Task<T> Post<T>(string path, Dictionary<string, object> data)
         {
-            var content = new StringContent(data.ToString(), Encoding.UTF8, "application/json");
-            var url = $"{this.configuration.BaseUrl}/boards?key={this.configuration.ApiKey}&token={this.apiToken}";
-            return await this.httpClient.PostAsync(url, content).Result.Content.ReadAsStringAsync();
+            var parameters = string.Join("&", data.Select(d => $"{d.Key}={d.Value}"));
+            var url = $"{this.configuration.BaseUrl}/{path}?key={this.configuration.ApiKey}&token={this.apiToken}&{parameters}";
+            var result = await this.httpClient.PostAsync(url, null);
+            var x = await result.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<T>(x, new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true,
+                IgnoreNullValues = true, IgnoreReadOnlyProperties = true
+            });
         }
     }
 }

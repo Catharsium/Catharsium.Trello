@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Catharsium.Trello.Api.Client._Configuration;
 using Catharsium.Trello.Api.Client.Clients;
 using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Api.Client.Models;
@@ -16,16 +15,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
     {
         #region Fixture
 
-        public TrelloApiClientConfiguration Configuration { get; set; }
-        public string BaseUrl => "My base url";
-
-
-        [TestInitialize]
-        public void SetupDependencies()
-        {
-            this.SetDependency(this.Configuration);
-            this.SetDependency(this.BaseUrl);
-        }
+        private static string BoardId => "My board id";
 
         #endregion
 
@@ -36,10 +26,26 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
         {
             var apiResult = new ApiBoard[0];
             var expected = new Board[0];
-            this.GetDependency<ITrelloRestClient>().Get<ApiBoard[]>("boards").Returns(apiResult);
+            this.GetDependency<ITrelloRestClient>().Get<ApiBoard[]>("members/me/boards").Returns(apiResult);
             this.GetDependency<IMapper>().Map<Board[]>(apiResult).Returns(expected);
 
             var actual = await this.Target.GetAll();
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region GetBoard
+
+        [TestMethod]
+        public async Task GetBoard_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiBoard();
+            var expected = new Board();
+            this.GetDependency<ITrelloRestClient>().Get<ApiBoard>($"boards/{BoardId}").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Board>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetBoard(BoardId);
             Assert.AreEqual(expected, actual);
         }
 
@@ -50,13 +56,76 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
         [TestMethod]
         public async Task GetLists_ValidId_ReturnsRestClientResult()
         {
-            var boardId = "My board id";
             var apiResult = new ApiList[0];
             var expected = new List[0];
-            this.GetDependency<ITrelloRestClient>().Get<ApiList[]>($"boards/{boardId}/lists").Returns(apiResult);
+            this.GetDependency<ITrelloRestClient>().Get<ApiList[]>($"boards/{BoardId}/lists").Returns(apiResult);
             this.GetDependency<IMapper>().Map<List[]>(apiResult).Returns(expected);
 
-            var actual = await this.Target.GetLists(boardId);
+            var actual = await this.Target.GetLists(BoardId);
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region GetCards
+
+        [TestMethod]
+        public async Task GetCards_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiCard[0];
+            var expected = new Card[0];
+            this.GetDependency<ITrelloRestClient>().Get<ApiCard[]>($"boards/{BoardId}/cards").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Card[]>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetCards(BoardId);
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region GetActions
+
+        [TestMethod]
+        public async Task GetActions_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiAction[0];
+            var expected = new Action[0];
+            this.GetDependency<ITrelloRestClient>().Get<ApiAction[]>($"boards/{BoardId}/actions").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Action[]>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetActions(BoardId);
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region GetChecklists
+
+        [TestMethod]
+        public async Task GetChecklists_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiChecklist[0];
+            var expected = new Checklist[0];
+            this.GetDependency<ITrelloRestClient>().Get<ApiChecklist[]>($"boards/{BoardId}/checklists").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Checklist[]>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetChecklists(BoardId);
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region GetMemberships
+
+        [TestMethod]
+        public async Task GetMemberships_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiMembership[0];
+            var expected = new Membership[0];
+            this.GetDependency<ITrelloRestClient>().Get<ApiMembership[]>($"boards/{BoardId}/memberships").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Membership[]>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetMemberships(BoardId);
             Assert.AreEqual(expected, actual);
         }
 

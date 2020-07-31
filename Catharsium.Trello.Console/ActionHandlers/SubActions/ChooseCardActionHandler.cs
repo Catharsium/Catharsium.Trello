@@ -4,7 +4,7 @@ using Catharsium.Util.IO.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Catharsium.Trello.Console.ActionHandlers
+namespace Catharsium.Trello.Console.ActionHandlers.SubActions
 {
     public class ChooseCardActionHandler : IChooseCardActionHandler
     {

@@ -7,12 +7,10 @@
         public bool Closed { get; set; }
         public string IdBoard { get; set; }
         public decimal Pos { get; set; }
-
         public bool Subscribed { get; set; }
         //public object SoftLimit { get; set; }
-        //limits
         //public object CreationMethod {get;set;}
-
+        //public string Limits { get; set; }
 
         public override string ToString()
         {

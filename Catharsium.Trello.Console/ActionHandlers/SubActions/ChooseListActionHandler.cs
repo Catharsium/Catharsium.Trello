@@ -1,10 +1,10 @@
-﻿using Catharsium.Trello.Console.ActionHandlers.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models;
 using Catharsium.Util.IO.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Catharsium.Trello.Console.ActionHandlers
+namespace Catharsium.Trello.Console.ActionHandlers.SubActions
 {
     public class ChooseListActionHandler : IChooseListActionHandler
     {

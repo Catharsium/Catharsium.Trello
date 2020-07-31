@@ -2,7 +2,7 @@
 
 namespace Catharsium.Trello.Api.Client.Models
 {
-    public class ApiBoardPreferences
+    public class ApiPreferences
     {
         public string PermissionLevel { get; set; }
         public bool HideVotes { get; set; }

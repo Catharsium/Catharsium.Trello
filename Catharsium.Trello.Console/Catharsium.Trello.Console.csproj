@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj" />
     <ProjectReference Include="..\Catharsium.Trello.Core\Catharsium.Trello.Core.csproj" />
     <ProjectReference Include="..\Catharsium.Trello.Data\Catharsium.Trello.Data.csproj" />
+    <ProjectReference Include="..\Plugins\Catharsium.Trello.Plugins.WeeklyGoals\Catharsium.Trello.Plugins.WeeklyGoals.csproj" />
   </ItemGroup>
 
   <ItemGroup>

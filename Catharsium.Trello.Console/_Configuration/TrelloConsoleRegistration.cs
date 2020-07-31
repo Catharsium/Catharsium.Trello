@@ -3,8 +3,11 @@ using Catharsium.Trello.Api.Client.Clients;
 using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
+using Catharsium.Trello.Console.ActionHandlers.SubActions;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Data._Configuration;
+using Catharsium.Trello.Models.Interfaces.Console;
+using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Util._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
@@ -23,13 +26,15 @@ namespace Catharsium.Trello.Console._Configuration
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(_ => trelloCoreConfiguration);
 
             services.AddScoped<IChooseActionHandler, ChooseActionHandler>();
-            services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
             services.AddScoped<IActionHandler, BrowseActionHandler>();
+            services.AddScoped<IActionHandler, CreateActionHandler>();
+            services.AddScoped<IActionHandler, ImportActionHandler>();
+            services.AddScoped<IChooseBoardActionHandler, ChooseBoardActionHandler>();
             services.AddScoped<IChooseCardActionHandler, ChooseCardActionHandler>();
             services.AddScoped<IChooseListActionHandler, ChooseListActionHandler>();
 
-            services.AddTransient<ITrelloRestClient, TrelloRestClient>(provider => new TrelloRestClient(
-                new HttpClient(), 
+            services.AddSingleton<ITrelloRestClient, TrelloRestClient>(provider => new TrelloRestClient(
+                new HttpClient(),
                 provider.GetService<TrelloApiClientConfiguration>(),
                 provider.GetService<IConsole>().AskForText("Enter your Trello Token:")));
 
@@ -39,6 +44,8 @@ namespace Catharsium.Trello.Console._Configuration
 
             services.AddCatharsiumUtilities(configuration);
             services.AddIoUtilities(configuration);
+
+            services.AddWeeklyGoalsPlugin(configuration);
 
             return services;
         }

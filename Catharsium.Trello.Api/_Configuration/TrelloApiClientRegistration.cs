@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Catharsium.Trello.Api.Client.Clients;
 using Catharsium.Trello.Api.Client.Interfaces;
+using Catharsium.Trello.Api.Client.Services;
+using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,9 @@ namespace Catharsium.Trello.Api.Client._Configuration
             services.AddSingleton<TrelloApiClientConfiguration, TrelloApiClientConfiguration>(_ => trelloCoreConfiguration);
 
             services.AddScoped<IBoardsClient, BoardsClient>();
+            services.AddScoped<IListsClient, ListsClient>();
+
+            services.AddScoped<IBoardsService, BoardsService>();
 
             services.AddAutoMapper(typeof(TrelloApiClientRegistration));
 

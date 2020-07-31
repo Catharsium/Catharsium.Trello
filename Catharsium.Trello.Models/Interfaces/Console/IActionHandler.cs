@@ -1,7 +1,11 @@
-﻿namespace Catharsium.Trello.Models.Interfaces.Console
+﻿using System.Threading.Tasks;
+
+namespace Catharsium.Trello.Models.Interfaces.Console
 {
     public interface IActionHandler
     {
-        void Run();
+        string FriendlyName { get; }
+
+        Task Run();
     }
 }

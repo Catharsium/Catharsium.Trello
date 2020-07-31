@@ -1,4 +1,6 @@
-﻿using Catharsium.Util.Configuration.Extensions;
+﻿using Catharsium.Trello.Models.Interfaces.Console;
+using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
+using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals._Configuration
             var trelloCoreConfiguration = configuration.Load<WeeklyGoalsPluginConfiguration>();
             services.AddSingleton<WeeklyGoalsPluginConfiguration, WeeklyGoalsPluginConfiguration>(provider => trelloCoreConfiguration);
 
-            //services.AddTransient<IBoardsRepository, BoardsRepository>();
+            services.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
 
             return services;
         }
