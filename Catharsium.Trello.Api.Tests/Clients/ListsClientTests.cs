@@ -27,15 +27,17 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
         public async Task CreateNew_ValidRequiredFields_PostsData()
         {
             var name = "My name";
-            var expected = "My result";
-            this.GetDependency<ITrelloRestClient>().Post<string>("lists", Arg.Is<Dictionary<string, object>>(p =>
+            var expected = new List();
+            var apiList = new ApiList();
+            this.GetDependency<ITrelloRestClient>().Post<ApiList>("lists", Arg.Is<Dictionary<string, object>>(p =>
                     p.ContainsKey("name") &&
                     p["name"] == (object)name &&
                     p.ContainsKey("idBoard") &&
                     p["idBoard"] == (object)BoardId &&
                     !p.ContainsKey("idListSource") &&
                     !p.ContainsKey("pos")))
-                .Returns(expected);
+                .Returns(apiList);
+            this.GetDependency<IMapper>().Map<List>(apiList).Returns(expected);
 
             var actual = await this.Target.CreateNew(name, BoardId);
             Assert.AreEqual(expected, actual);
@@ -48,13 +50,15 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
             var name = "My name";
             var sourceListId = "My source list id";
             var position = "My position";
-            var expected = "My result";
-            this.GetDependency<ITrelloRestClient>().Post<string>("lists", Arg.Is<Dictionary<string, object>>(p =>
+            var expected = new List();
+            var apiList = new ApiList();
+            this.GetDependency<ITrelloRestClient>().Post<ApiList>("lists", Arg.Is<Dictionary<string, object>>(p =>
                     p.ContainsKey("idListSource") &&
                     p["idListSource"] == (object)sourceListId &&
                     p.ContainsKey("pos") &&
                     p["pos"] == (object)position))
-                .Returns(expected);
+                .Returns(apiList);
+            this.GetDependency<IMapper>().Map<List>(apiList).Returns(expected);
 
             var actual = await this.Target.CreateNew(name, BoardId, sourceListId, position);
             Assert.AreEqual(expected, actual);
