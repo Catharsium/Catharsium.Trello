@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Catharsium.Trello.Models
 {
@@ -7,10 +6,9 @@ namespace Catharsium.Trello.Models
     {
         public string Id { get; set; }
         public string IdMemberCreator { get; set; }
-        public ActionData Data { get; set; }
         public string Type { get; set; }
         public DateTime Date { get; set; }
-        //public Limit[] Limits { get; set; }
-        public MemberCreator MemberCreator { get; set; }
+        public object Limits { get; set; }
+        public Member MemberCreator { get; set; }
     }
 }

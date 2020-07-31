@@ -17,6 +17,7 @@ namespace Catharsium.Trello.Api.Client._Configuration.Mapping
             this.CreateMap<ApiAction, Action>();
             this.CreateMap<ApiChecklist, Checklist>();
             this.CreateMap<ApiMembership, Membership>();
+            this.CreateMap<ApiMember, Member>();
 
             this.CreateMap<ApiLabel, Label>();
         }
