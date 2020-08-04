@@ -9,6 +9,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
     public class ActiveGoalsActionHandlerTests : TestFixture<ActiveGoalsActionHandler>
     {
         [TestMethod]
+        [Ignore]
         public async Task Run_()
         {
             await this.Target.Run();
