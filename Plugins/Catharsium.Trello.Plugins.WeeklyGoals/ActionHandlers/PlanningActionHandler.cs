@@ -41,12 +41,19 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             var lists = board.Lists.Where(l => l.Pos <= maximumListPosition).Select(l => l.Id);
             var cards = board.Cards.Where(c => lists.Contains(c.IdList)).Where(c => c.Due.HasValue).ToList();
 
-            var startDate = DateTime.Now.GetDayFromWeek(DayOfWeek.Sunday);
+            var startDate = DateTime.Now.GetDayFromWeek(DayOfWeek.Sunday).Date.AddHours(-7);
             var endDate = startDate.AddDays(7);
             while (cards.Any(c => c.Due > endDate)) {
                 var dateFilter = this.cardFilterFactory.CreateDataFilter(startDate, endDate);
-                var filteredCards = cards.Include(dateFilter);
-                this.console.WriteLine($"Due {endDate:yyyy-MM-dd}, {filteredCards.Count()} goals");
+                var filteredCards = cards.Include(dateFilter).ToArray();
+                this.console.Write($"Due {endDate:yyyy-MM-dd} ");
+                this.console.ForegroundColor = filteredCards.Length > 6 ? ConsoleColor.Red : ConsoleColor.Green;
+                this.console.Write(filteredCards.Length.ToString());
+                this.console.ResetColor();
+                this.console.WriteLine(" goals");
+                foreach (var card in filteredCards) {
+                    this.console.WriteLine($"\t{card.Name}");
+                }
                 startDate = endDate;
                 endDate = endDate.AddDays(7);
             }

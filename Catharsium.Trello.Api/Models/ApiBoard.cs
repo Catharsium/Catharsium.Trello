@@ -19,7 +19,7 @@ namespace Catharsium.Trello.Api.Client.Models
         public List<object> IdTags { get; set; }
         public DateTime? DatePluginDisable { get; set; }
         public object CreationMethod { get; set; }
-        public decimal IxUpdate { get; set; }
+        public decimal? IxUpdate { get; set; }
         public bool EnterpriseOwned { get; set; }
         public string IdBoardSource { get; set; }
         public string Id { get; set; }
