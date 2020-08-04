@@ -29,7 +29,7 @@ namespace Catharsium.Trello.Models
         public decimal Pos { get; set; }
         public bool IsTemplate { get; set; }
         public bool DueComplete { get; set; }
-        public object Due { get; set; }
+        public DateTime? Due { get; set; }
         public List<Label> Labels { get; set; }
         public bool Subscribed { get; set; }
         public Cover ApiCover { get; set; }

@@ -13,7 +13,7 @@ namespace Catharsium.Trello.Data._Configuration
             var trelloCoreConfiguration = configuration.Load<TrelloDataConfiguration>();
             services.AddSingleton<TrelloDataConfiguration, TrelloDataConfiguration>(provider => trelloCoreConfiguration);
 
-            services.AddTransient<IBoardsRepository, BoardsRepository>();
+            services.AddTransient<ITrelloRepositoryFactory, TrelloRepositoryFactory>();
 
             return services;
         }

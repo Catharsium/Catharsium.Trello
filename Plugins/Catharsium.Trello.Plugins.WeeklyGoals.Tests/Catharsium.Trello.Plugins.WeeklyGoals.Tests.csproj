@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Catharsium.Trello.Console\Catharsium.Trello.Console.csproj" />
     <ProjectReference Include="..\Catharsium.Trello.Plugins.WeeklyGoals\Catharsium.Trello.Plugins.WeeklyGoals.csproj" />
   </ItemGroup>
 

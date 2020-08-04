@@ -1,8 +1,7 @@
 ﻿using Catharsium.Trello.Core.Filters;
-using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Util.Configuration.Extensions;
-using Catharsium.Util.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,8 +19,13 @@ namespace Catharsium.Trello.Core._Configuration
             services.AddScoped<ICardFilterFactory, CardFilterFactory>();
 
             services.AddTransient(provider => {
-                return new Func<DateTime, DateTime, IFilter<Card>>(
-                    (fromDate, toDate) => new DateFilter(provider.GetService<ICreationDateRetriever>(), fromDate, toDate)
+                return new Func<DateTime, DateTime, ICreationDateFilter>(
+                    (fromDate, toDate) => new CreationDateFilter(provider.GetService<ICreationDateRetriever>(), fromDate, toDate)
+                );
+            });
+            services.AddTransient(provider => {
+                return new Func<DateTime, DateTime, IDueDateFilter>(
+                    (fromDate, toDate) => new DueDateFilter(fromDate, toDate)
                 );
             });
 

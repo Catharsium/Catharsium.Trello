@@ -25,7 +25,7 @@ namespace Catharsium.Trello.Api.Client.Models
         public bool IsTemplate { get; set; }
         public ApiBadges ApiBadges { get; set; }
         public bool DueComplete { get; set; }
-        public object Due { get; set; }
+        public DateTime? Due { get; set; }
         public List<string> IdChecklists { get; set; }
         public List<object> IdMembers { get; set; }
         public List<ApiLabel> Labels { get; set; }

@@ -37,7 +37,7 @@ namespace Catharsium.Trello.Models
         public List<object> IdTags { get; set; }
         public DateTime? DatePluginDisable { get; set; }
         public object CreationMethod { get; set; }
-        public int IxUpdate { get; set; }
+        public decimal IxUpdate { get; set; }
         public object TemplateGallery { get; set; }
         public List<object> PremiumFeatures { get; set; }
         public bool EnterpriseOwned { get; set; }

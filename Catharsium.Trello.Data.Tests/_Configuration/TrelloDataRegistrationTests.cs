@@ -19,7 +19,7 @@ namespace Catharsium.Trello.Data.Tests._Configuration
             var configuration = Substitute.For<IConfiguration>();
 
             serviceCollection.AddTrelloData(configuration);
-            serviceCollection.ReceivedRegistration<IBoardsRepository, BoardsRepository>();
+            serviceCollection.ReceivedRegistration<ITrelloRepositoryFactory, TrelloRepositoryFactory>();
         }
     }
 }

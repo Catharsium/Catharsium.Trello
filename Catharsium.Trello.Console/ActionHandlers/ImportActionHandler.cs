@@ -12,19 +12,19 @@ namespace Catharsium.Trello.Console.ActionHandlers
     {
         private readonly IBoardsClient boardsClient;
         private readonly IBoardsService boardsService;
-        private readonly IBoardsRepository boardsRepository;
+        private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
         private readonly TrelloConsoleConfiguration configuration;
 
 
         public ImportActionHandler(
             IBoardsClient boardsClient,
             IBoardsService boardsService,
-            IBoardsRepository boardsRepository,
+            ITrelloRepositoryFactory boardsRepositoryFactory,
             TrelloConsoleConfiguration configuration)
         {
             this.boardsClient = boardsClient;
             this.boardsService = boardsService;
-            this.boardsRepository = boardsRepository;
+            this.boardsRepositoryFactory = boardsRepositoryFactory;
             this.configuration = configuration;
         }
 
@@ -35,9 +35,10 @@ namespace Catharsium.Trello.Console.ActionHandlers
         public async Task Run()
         {
             var boards = await this.boardsClient.GetAll();
+            var repository = this.boardsRepositoryFactory.Create(this.configuration.RepositoryFolder);
             foreach (var boardId in boards.Select(b => b.Id)) {
                 var board = await this.boardsService.GetBoard(boardId);
-                this.boardsRepository.Store(board, this.configuration.RepositoryFolder);
+                repository.Store(board);
             }
         }
     }

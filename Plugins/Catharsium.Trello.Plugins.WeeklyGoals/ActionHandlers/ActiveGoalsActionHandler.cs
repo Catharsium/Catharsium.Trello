@@ -1,18 +1,21 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
+using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Catharsium.Trello.Models;
+using Catharsium.Trello.Models.Interfaces.Core.Filters;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
     public class ActiveGoalsActionHandler : IActionHandler
     {
         private readonly IBoardsClient boardsClient;
+        private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
         private readonly IListsClient listsClient;
         private readonly ICreationDateRetriever creationDateRetriever;
         private readonly ICardFilterFactory cardFilterFactory;
@@ -20,13 +23,15 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 
 
         public ActiveGoalsActionHandler(
-            IBoardsClient boardsClient, 
+            IBoardsClient boardsClient,
+            ITrelloRepositoryFactory boardsRepositoryFactory,
             IListsClient listsClient, 
             ICreationDateRetriever creationDateRetriever,
             ICardFilterFactory cardFilterFactory,
             IConsole console)
         {
             this.boardsClient = boardsClient;
+            this.boardsRepositoryFactory = boardsRepositoryFactory;
             this.listsClient = listsClient;
             this.creationDateRetriever = creationDateRetriever;
             this.cardFilterFactory = cardFilterFactory;
@@ -39,16 +44,14 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         public async Task Run()
         {
             var previousOpenCards = 0;
-            //   var boards = boardsRepository.GetAll(@"D:\Cloud\OneDrive\Data\Trello").ToList();
-            var boards = await this.boardsClient.GetAll();
+            var boardsRepository = this.boardsRepositoryFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
+            var boards = (await boardsRepository.GetBoards()).ToList();
+            //var boards = await this.boardsClient.GetAll();
             foreach (var board in boards) {
                 this.console.WriteLine($"{board} (Created: {this.creationDateRetriever.FindCreationDate(board.Id)})");
             }
 
-            var goalsBoard = boards.FirstOrDefault(b => b.Name == "Weekly Goals");
-            if (goalsBoard == null) {
-                return;
-            }
+            var goalsBoard = await boardsRepository.GetBoard("Weekly Goals");
 
             var lists = await this.boardsClient.GetLists(goalsBoard.Id);
             var openLists = lists.Where(l => !l.Name.Contains("Enjoying")).Select(l => l.Id).ToList();

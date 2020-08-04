@@ -36,7 +36,7 @@ namespace Catharsium.Trello.Console.Tests._Configuration
 
             serviceCollection.ReceivedRegistration<ITrelloRestClient>();
             serviceCollection.ReceivedRegistration<IFileFactory>();
-            serviceCollection.ReceivedRegistration<IBoardsRepository>();
+            serviceCollection.ReceivedRegistration<ITrelloRepository>();
             serviceCollection.ReceivedRegistration<ITypesRetriever>();
         }
     }

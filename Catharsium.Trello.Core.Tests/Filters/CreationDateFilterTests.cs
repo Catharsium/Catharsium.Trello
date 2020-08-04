@@ -9,7 +9,7 @@ using System;
 namespace Catharsium.Trello.Core.Tests.Filters
 {
     [TestClass]
-    public class DateFilterTests : TestFixture<DateFilter>
+    public class CreationDateFilterTests : TestFixture<CreationDateFilter>
     {
         #region Fixture
 
@@ -69,7 +69,7 @@ namespace Catharsium.Trello.Core.Tests.Filters
 
 
         [TestMethod]
-        public void Includes_CreationDateEqualToToDate_ReturnsFalse()
+        public void Includes_CreationDateEqualToToDate_ReturnsTrue()
         {
             var fromDate = DateTime.Now.AddDays(-1);
             var toDate = DateTime.Now.AddDays(1);

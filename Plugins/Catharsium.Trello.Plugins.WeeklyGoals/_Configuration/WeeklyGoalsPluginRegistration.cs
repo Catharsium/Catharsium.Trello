@@ -14,6 +14,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals._Configuration
             services.AddSingleton<WeeklyGoalsPluginConfiguration, WeeklyGoalsPluginConfiguration>(provider => trelloCoreConfiguration);
 
             services.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
+            services.AddScoped<IActionHandler, PlanningActionHandler>();
 
             return services;
         }

@@ -1,19 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Catharsium.Trello.Models.Interfaces.Console;
+using Catharsium.Trello.Models.Interfaces.Data;
+using System.Linq;
 using System.Threading.Tasks;
-using Catharsium.Trello.Models.Interfaces.Console;
+using System;
+using Catharsium.Trello.Core;
+using Catharsium.Trello.Models.Interfaces.Core;
+using Catharsium.Trello.Models.Interfaces.Core.Filters;
+using Catharsium.Util.Filters;
+using Catharsium.Util.IO.Interfaces;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
     public class PlanningActionHandler : IActionHandler
     {
+        private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
+        private readonly ICardFilterFactory cardFilterFactory;
+        private readonly IConsole console;
+
+
+        public PlanningActionHandler(ITrelloRepositoryFactory boardsRepositoryFactory, ICardFilterFactory cardFilterFactory, IConsole console)
+        {
+            this.boardsRepositoryFactory = boardsRepositoryFactory;
+            this.cardFilterFactory = cardFilterFactory;
+            this.console = console;
+        }
+
+
         public string FriendlyName => "Planning";
 
 
-        public Task Run()
+        public async Task Run()
         {
-            throw new NotImplementedException();
+            var repository = this.boardsRepositoryFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
+            var board = await repository.GetBoard("Weekly Goals");
+            if (board == null) {
+                return;
+            }
+
+            var maximumListPosition = board.Lists.First(l => l.Name == "Doing").Pos;
+            var lists = board.Lists.Where(l => l.Pos <= maximumListPosition).Select(l => l.Id);
+            var cards = board.Cards.Where(c => lists.Contains(c.IdList)).Where(c => c.Due.HasValue).ToList();
+
+            var startDate = DateTime.Now.GetDayFromWeek(DayOfWeek.Sunday);
+            var endDate = startDate.AddDays(7);
+            while (cards.Any(c => c.Due > endDate)) {
+                var dateFilter = this.cardFilterFactory.CreateDataFilter(startDate, endDate);
+                var filteredCards = cards.Include(dateFilter);
+                this.console.WriteLine($"Due {endDate:yyyy-MM-dd}, {filteredCards.Count()} goals");
+                startDate = endDate;
+                endDate = endDate.AddDays(7);
+            }
         }
     }
 }

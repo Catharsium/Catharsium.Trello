@@ -1,18 +1,18 @@
 ﻿using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Core;
-using Catharsium.Util.Filters;
+using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using System;
 
 namespace Catharsium.Trello.Core.Filters
 {
-    public class DateFilter : IFilter<Card>
+    public class CreationDateFilter : ICreationDateFilter
     {
         private readonly ICreationDateRetriever creationDateRetriever;
         private readonly DateTime fromDate;
         private readonly DateTime toDate;
 
 
-        public DateFilter(ICreationDateRetriever creationDateRetriever, DateTime fromDate, DateTime toDate)
+        public CreationDateFilter(ICreationDateRetriever creationDateRetriever, DateTime fromDate, DateTime toDate)
         {
             this.creationDateRetriever = creationDateRetriever;
             this.fromDate = fromDate;
