@@ -31,9 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.WeeklyGoals.Tests", "Plugins\Catharsium.Trello.Plugins.WeeklyGoals.Tests\Catharsium.Trello.Plugins.WeeklyGoals.Tests.csproj", "{E134AA1C-774B-4F72-8F11-BC64B87BEFF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Api.Client", "Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj", "{6665D416-C5A6-4240-85A9-E634826B9DA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Api.Client", "Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj", "{6665D416-C5A6-4240-85A9-E634826B9DA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Api.Client.Tests", "Catharsium.Trello.Api.Tests\Catharsium.Trello.Api.Client.Tests.csproj", "{7AD76EF1-4742-4BF6-8719-C649DEA3D609}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Api.Client.Tests", "Catharsium.Trello.Api.Tests\Catharsium.Trello.Api.Client.Tests.csproj", "{7AD76EF1-4742-4BF6-8719-C649DEA3D609}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Plugins.Groceries", "Plugins\Catharsium.Trello.Plugins.Groceries\Catharsium.Trello.Plugins.Groceries.csproj", "{6143095B-587F-4946-8F27-9F02B59BB39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Plugins.Groceries.Tests", "Plugins\Catharsium.Trello.Plugins.Groceries.Tests\Catharsium.Trello.Plugins.Groceries.Tests.csproj", "{FEC91A9E-E8CF-42F1-937D-51CAD9893329}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,14 @@ Global
 		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD76EF1-4742-4BF6-8719-C649DEA3D609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6143095B-587F-4946-8F27-9F02B59BB39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6143095B-587F-4946-8F27-9F02B59BB39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6143095B-587F-4946-8F27-9F02B59BB39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6143095B-587F-4946-8F27-9F02B59BB39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC91A9E-E8CF-42F1-937D-51CAD9893329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC91A9E-E8CF-42F1-937D-51CAD9893329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC91A9E-E8CF-42F1-937D-51CAD9893329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC91A9E-E8CF-42F1-937D-51CAD9893329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +118,8 @@ Global
 		{E134AA1C-774B-4F72-8F11-BC64B87BEFF8} = {928D15CF-26AF-4DCA-A26E-D35FC19296B7}
 		{6665D416-C5A6-4240-85A9-E634826B9DA0} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
 		{7AD76EF1-4742-4BF6-8719-C649DEA3D609} = {0109278C-45EA-4E21-B5A4-4316A7B86818}
+		{6143095B-587F-4946-8F27-9F02B59BB39B} = {928D15CF-26AF-4DCA-A26E-D35FC19296B7}
+		{FEC91A9E-E8CF-42F1-937D-51CAD9893329} = {928D15CF-26AF-4DCA-A26E-D35FC19296B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0139B43F-72FC-4246-B23C-AB0B931FC28A}

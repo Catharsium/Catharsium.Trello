@@ -24,6 +24,7 @@ namespace Catharsium.Trello.Api.Client.Tests._Configuration
             serviceCollection.AddTrelloApiClient(configuration);
             serviceCollection.ReceivedRegistration<IBoardsClient, BoardsClient>();
             serviceCollection.ReceivedRegistration<IListsClient, ListsClient>();
+            serviceCollection.ReceivedRegistration<ICardsClient, CardsClient>();
 
             serviceCollection.ReceivedRegistration<IBoardsService, BoardsService>();
 

@@ -2,7 +2,6 @@
 using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
-using Catharsium.Util.IO.Interfaces;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;

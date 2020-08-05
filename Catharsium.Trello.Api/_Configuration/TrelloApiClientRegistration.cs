@@ -18,6 +18,7 @@ namespace Catharsium.Trello.Api.Client._Configuration
 
             services.AddScoped<IBoardsClient, BoardsClient>();
             services.AddScoped<IListsClient, ListsClient>();
+            services.AddScoped<ICardsClient, CardsClient>();
 
             services.AddScoped<IBoardsService, BoardsService>();
 

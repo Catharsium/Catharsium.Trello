@@ -38,7 +38,7 @@ namespace Catharsium.Trello.Console.ActionHandlers
             var repository = this.boardsRepositoryFactory.Create(this.configuration.RepositoryFolder);
             foreach (var boardId in boards.Select(b => b.Id)) {
                 var board = await this.boardsService.GetBoard(boardId);
-                repository.Store(board);
+                await repository.Store(board);
             }
         }
     }

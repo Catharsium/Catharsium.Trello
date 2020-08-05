@@ -1,26 +1,25 @@
-﻿using Catharsium.Trello.Models.Interfaces.Console;
-using Catharsium.Trello.Models.Interfaces.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
-using Catharsium.Trello.Core;
-using Catharsium.Trello.Models.Interfaces.Core;
+﻿using Catharsium.Trello.Core;
+using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
+using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.Filters;
 using Catharsium.Util.IO.Interfaces;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
     public class PlanningActionHandler : IActionHandler
     {
-        private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
+        private readonly ITrelloRepositoryFactory trelloRepositoryFactory;
         private readonly ICardFilterFactory cardFilterFactory;
         private readonly IConsole console;
 
 
-        public PlanningActionHandler(ITrelloRepositoryFactory boardsRepositoryFactory, ICardFilterFactory cardFilterFactory, IConsole console)
+        public PlanningActionHandler(ITrelloRepositoryFactory trelloRepositoryFactory, ICardFilterFactory cardFilterFactory, IConsole console)
         {
-            this.boardsRepositoryFactory = boardsRepositoryFactory;
+            this.trelloRepositoryFactory = trelloRepositoryFactory;
             this.cardFilterFactory = cardFilterFactory;
             this.console = console;
         }
@@ -31,7 +30,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 
         public async Task Run()
         {
-            var repository = this.boardsRepositoryFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
+            var repository = this.trelloRepositoryFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
             var board = await repository.GetBoard("Weekly Goals");
             if (board == null) {
                 return;

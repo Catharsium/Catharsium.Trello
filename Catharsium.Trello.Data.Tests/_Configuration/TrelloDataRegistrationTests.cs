@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Data._Configuration;
 using Catharsium.Trello.Data.Repository;
+using Catharsium.Trello.Data.Services;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.Testing.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace Catharsium.Trello.Data.Tests._Configuration
 
             serviceCollection.AddTrelloData(configuration);
             serviceCollection.ReceivedRegistration<ITrelloRepositoryFactory, TrelloRepositoryFactory>();
+            serviceCollection.ReceivedRegistration<ITrelloServiceFactory, TrelloServiceFactory>();
         }
     }
 }

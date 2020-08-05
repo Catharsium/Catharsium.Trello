@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Catharsium.Util.Configuration" Version="2.5.3" />
+    <PackageReference Include="Catharsium.Util.IO" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj" />
+    <ProjectReference Include="..\..\Catharsium.Trello.Models\Catharsium.Trello.Models.csproj" />
+  </ItemGroup>
+
+</Project>
