@@ -11,6 +11,7 @@ namespace Catharsium.Trello.Api.Client.Interfaces
         Task<Card[]> GetCards(string boardId);
         Task<Action[]> GetActions(string boardId);
         Task<Checklist[]> GetChecklists(string boardId);
+        Task<Label[]> GetLabels(string boardId);
         Task<Membership[]> GetMemberships(string boardId);
     }
 }

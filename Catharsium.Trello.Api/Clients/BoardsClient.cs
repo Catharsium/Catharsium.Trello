@@ -61,6 +61,13 @@ namespace Catharsium.Trello.Api.Client.Clients
         }
 
 
+        public async Task<Label[]> GetLabels(string boardId)
+        {
+            var result = await this.trelloRestClient.Get<ApiLabel[]>($"boards/{boardId}/labels");
+            return this.mapper.Map<Label[]>(result);
+        }
+
+
         public async Task<Membership[]> GetMemberships(string boardId)
         {
             var result = await this.trelloRestClient.Get<ApiMembership[]>($"boards/{boardId}/memberships");

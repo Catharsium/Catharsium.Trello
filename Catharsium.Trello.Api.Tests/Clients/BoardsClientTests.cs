@@ -115,6 +115,22 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
 
         #endregion
 
+        #region GetLabels
+
+        [TestMethod]
+        public async Task GetLabels_ValidId_ReturnsRestClientResult()
+        {
+            var apiResult = new ApiLabel[0];
+            var expected = new Label[0];
+            this.GetDependency<ITrelloRestClient>().Get<ApiLabel[]>($"boards/{BoardId}/labels").Returns(apiResult);
+            this.GetDependency<IMapper>().Map<Label[]>(apiResult).Returns(expected);
+
+            var actual = await this.Target.GetLabels(BoardId);
+            Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
         #region GetMemberships
 
         [TestMethod]

@@ -31,11 +31,15 @@ namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
             var endDate = this.console.AskForDate("Enter the end date (yyyy MM dd):") ?? startDate.AddDays(7);
 
             var service = this.trelloServiceFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
-            var list = await service.GetList("Boodschappen", "Levensmiddelen");
+            var list = await service.GetList("Groceries", "Levensmiddelen");
+            var label = await service.GetLabel("Groceries", "orange");
 
             while (startDate <= endDate) {
                 var cardName = $"{startDate:d MMM yyyy} ({startDate.ToString("dddd", new CultureInfo("nl-NL"))})";
-                var card = await this.cardsClient.CreateNew(cardName, list.IdBoard, list.Id, labels: new[] {"orange"});
+                var card = await service.GetCard("Groceries", cardName) ?? 
+                           await this.cardsClient.CreateNew(cardName, list.IdBoard, list.Id, labels: new[] {label.Id});
+
+                this.console.WriteLine($"Created card '{card}'");
                 startDate = startDate.AddDays(1);
             }
         }
