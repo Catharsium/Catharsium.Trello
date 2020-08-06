@@ -14,7 +14,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
     public class PlanningActionHandlerTests : TestFixture<PlanningActionHandler>
     {
         #region Fixture
-        
+
         private TrelloConsoleConfiguration Configuration { get; set; }
 
 

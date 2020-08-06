@@ -66,12 +66,18 @@ namespace Catharsium.Trello.Models
             set => this.checklists = value;
         }
 
+        private List<Label> labels;
+        public List<Label> Labels
+        {
+            get => this.labels ?? (this.labels = new List<Label>());
+            set => this.labels = value;
+        }
+
         private List<Membership> memberships;
         public List<Membership> Memberships {
             get => this.memberships ?? (this.memberships = new List<Membership>());
             set => this.memberships = value;
         }
-
         
 
         public override string ToString()

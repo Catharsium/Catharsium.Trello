@@ -31,6 +31,8 @@ namespace Catharsium.Trello.Api.Client.Services
             board.Actions.AddRange(actions);
             var checklists = await this.boardsClient.GetChecklists(board.Id);
             board.Checklists.AddRange(checklists);
+            var labels = await this.boardsClient.GetLabels(board.Id);
+            board.Labels.AddRange(labels);
             var memberships = await this.boardsClient.GetMemberships(board.Id);
             board.Memberships.AddRange(memberships);
 

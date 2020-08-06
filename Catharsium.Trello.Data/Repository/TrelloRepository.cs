@@ -59,11 +59,5 @@ namespace Catharsium.Trello.Data.Repository
 
             await Task.Run(() => this.jsonFileWriter.Write(board, file));
         }
-
-
-        public Task<List> GetList(string boardIdOrName, string listIdOrName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

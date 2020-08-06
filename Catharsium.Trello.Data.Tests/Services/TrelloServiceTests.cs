@@ -17,6 +17,10 @@ namespace Catharsium.Trello.Data.Tests.Services
         private static string Folder => "My folder";
         private static string BoardId => "My board id";
         private static string ListId => "My list id";
+        private static string CardId => "My card id";
+        private static string LabelId => "My label id";
+
+        public ITrelloRepository Repository { get; set; }
 
         public Board Board { get; set; }
 
@@ -28,6 +32,35 @@ namespace Catharsium.Trello.Data.Tests.Services
                 Id = "My board id"
             };
             this.SetDependency(Folder, "folder");
+
+            this.Repository = Substitute.For<ITrelloRepository>();
+            this.Repository.GetBoards().Returns(new[] {this.Board});
+            this.Repository.GetBoard(BoardId).Returns(this.Board);
+            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(this.Repository);
+        }
+
+        #endregion
+
+        #region GetBoards
+
+        [TestMethod]
+        public async Task GetBoards_ReturnsResultFromRepository()
+        {
+            var actual = await this.Target.GetBoards();
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(1, actual.Length);
+            Assert.AreEqual(this.Board, actual[0]);
+        }
+
+        #endregion
+
+        #region GetBoard
+
+        [TestMethod]
+        public async Task GetBoard_ReturnsResultFromRepository()
+        {
+            var actual = await this.Target.GetBoard(BoardId);
+            Assert.AreEqual(this.Board, actual);
         }
 
         #endregion
@@ -37,13 +70,9 @@ namespace Catharsium.Trello.Data.Tests.Services
         [TestMethod]
         public async Task GetList_ValidId_ReturnsListWithId()
         {
-            var repository = Substitute.For<ITrelloRepository>();
             this.Board.Lists = new List<List> {
                 new List {Id = ListId}
             };
-            repository.GetBoard(BoardId).Returns(this.Board);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(repository);
-
             var actual = await this.Target.GetList(BoardId, ListId);
             Assert.AreEqual(this.Board.Lists[0], actual);
         }
@@ -52,13 +81,9 @@ namespace Catharsium.Trello.Data.Tests.Services
         [TestMethod]
         public async Task GetList_ValidName_ReturnsListWithName()
         {
-            var repository = Substitute.For<ITrelloRepository>();
             this.Board.Lists = new List<List> {
                 new List {Name = ListId}
             };
-            repository.GetBoard(BoardId).Returns(this.Board);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(repository);
-
             var actual = await this.Target.GetList(BoardId, ListId);
             Assert.AreEqual(this.Board.Lists[0], actual);
         }
@@ -67,11 +92,7 @@ namespace Catharsium.Trello.Data.Tests.Services
         [TestMethod]
         public async Task GetList_InvalidListId_ReturnsNull()
         {
-            var repository = Substitute.For<ITrelloRepository>();
             this.Board.Lists = new List<List> {new List()};
-            repository.GetBoard(BoardId).Returns(this.Board);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(repository);
-
             var actual = await this.Target.GetList(BoardId, ListId);
             Assert.IsNull(actual);
         }
@@ -80,11 +101,91 @@ namespace Catharsium.Trello.Data.Tests.Services
         [TestMethod]
         public async Task GetList_InvalidBoardId_ReturnsNull()
         {
-            var repository = Substitute.For<ITrelloRepository>();
-            repository.GetBoard(BoardId).Returns(null as Board);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(repository);
-
             var actual = await this.Target.GetList(BoardId, ListId);
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region GetCard
+
+        [TestMethod]
+        public async Task GetCard_ValidId_ReturnsCardWithId()
+        {
+            this.Board.Cards = new List<Card> {
+                new Card {Id = CardId}
+            };
+            var actual = await this.Target.GetCard(BoardId, CardId);
+            Assert.AreEqual(this.Board.Cards[0], actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetCard_ValidColor_ReturnsCardWithName()
+        {
+            this.Board.Cards = new List<Card> {
+                new Card {Name = CardId}
+            };
+            var actual = await this.Target.GetCard(BoardId, CardId);
+            Assert.AreEqual(this.Board.Cards[0], actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetCard_InvalidListId_ReturnsNull()
+        {
+            this.Board.Cards = new List<Card> {new Card()};
+            var actual = await this.Target.GetCard(BoardId, CardId);
+            Assert.IsNull(actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetCard_InvalidBoardId_ReturnsNull()
+        {
+            var actual = await this.Target.GetCard(BoardId, CardId);
+            Assert.IsNull(actual);
+        }
+
+        #endregion
+
+        #region GetLabel
+
+        [TestMethod]
+        public async Task GetLabel_ValidId_ReturnsLabelWithId()
+        {
+            this.Board.Labels = new List<Label> {
+                new Label {Id = LabelId}
+            };
+            var actual = await this.Target.GetLabel(BoardId, LabelId);
+            Assert.AreEqual(this.Board.Labels[0], actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetLabel_ValidColor_ReturnsLabelWithColor()
+        {
+            this.Board.Labels = new List<Label> {
+                new Label {Color = LabelId}
+            };
+            var actual = await this.Target.GetLabel(BoardId, LabelId);
+            Assert.AreEqual(this.Board.Labels[0], actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetLabel_InvalidListId_ReturnsNull()
+        {
+            this.Board.Labels = new List<Label> {new Label()};
+            var actual = await this.Target.GetLabel(BoardId, LabelId);
+            Assert.IsNull(actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetLabel_InvalidBoardId_ReturnsNull()
+        {
+            var actual = await this.Target.GetLabel(BoardId, LabelId);
             Assert.IsNull(actual);
         }
 
