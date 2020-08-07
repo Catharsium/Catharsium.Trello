@@ -24,7 +24,7 @@ namespace Catharsium.Trello.Core.Filters
         }
 
 
-        public IFilter<Card> CreateDataFilter(DateTime fromDate, DateTime toDate)
+        public IFilter<Card> CreateDueDateFilter(DateTime fromDate, DateTime toDate)
         {
             var result = this.serviceProvider.GetService<Func<DateTime, DateTime, IDueDateFilter>>();
             return result(fromDate, toDate);

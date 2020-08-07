@@ -25,7 +25,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         }
 
 
-        public string FriendlyName => "Planning";
+        public string FriendlyName => "Weekly Goals > Planning";
 
 
         public async Task Run()
@@ -43,7 +43,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             var startDate = DateTime.Now.GetDayFromWeek(DayOfWeek.Sunday).Date.AddHours(-7);
             var endDate = startDate.AddDays(7);
             while (cards.Any(c => c.Due > endDate)) {
-                var dateFilter = this.cardFilterFactory.CreateDataFilter(startDate, endDate);
+                var dateFilter = this.cardFilterFactory.CreateDueDateFilter(startDate, endDate);
                 var filteredCards = cards.Include(dateFilter).ToArray();
                 this.console.Write($"Due {endDate:yyyy-MM-dd} ");
                 this.console.ForegroundColor = filteredCards.Length > 6 ? ConsoleColor.Red : ConsoleColor.Green;

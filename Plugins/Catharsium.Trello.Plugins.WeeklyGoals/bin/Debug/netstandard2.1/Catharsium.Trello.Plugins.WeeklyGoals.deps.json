@@ -12,8 +12,8 @@
           "Catharsium.Trello.Api.Client": "1.0.0",
           "Catharsium.Trello.Core": "1.0.0",
           "Catharsium.Trello.Models": "1.0.0",
-          "Catharsium.Util.Configuration": "2.5.3",
-          "Catharsium.Util.IO": "2.5.3"
+          "Catharsium.Util.Configuration": "2.5.5",
+          "Catharsium.Util.IO": "2.5.5"
         },
         "runtime": {
           "Catharsium.Trello.Plugins.WeeklyGoals.dll": {}
@@ -44,9 +44,9 @@
           }
         }
       },
-      "Catharsium.Util/2.5.3": {
+      "Catharsium.Util/2.5.5": {
         "dependencies": {
-          "Catharsium.Util.Configuration": "2.5.3",
+          "Catharsium.Util.Configuration": "2.5.5",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.Extensions.Caching.Memory": "3.1.6",
@@ -54,26 +54,26 @@
         },
         "runtime": {
           "lib/netstandard2.0/Catharsium.Util.dll": {
-            "assemblyVersion": "2.5.3.0",
-            "fileVersion": "2.5.3.0"
+            "assemblyVersion": "2.5.5.0",
+            "fileVersion": "2.5.5.0"
           }
         }
       },
-      "Catharsium.Util.Configuration/2.5.3": {
+      "Catharsium.Util.Configuration/2.5.5": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "3.1.6",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6"
         },
         "runtime": {
           "lib/netstandard2.0/Catharsium.Util.Configuration.dll": {
-            "assemblyVersion": "2.5.3.0",
-            "fileVersion": "2.5.3.0"
+            "assemblyVersion": "2.5.5.0",
+            "fileVersion": "2.5.5.0"
           }
         }
       },
-      "Catharsium.Util.IO/2.5.3": {
+      "Catharsium.Util.IO/2.5.5": {
         "dependencies": {
-          "Catharsium.Util": "2.5.3",
+          "Catharsium.Util": "2.5.5",
           "Microsoft.Extensions.Configuration.Binder": "3.1.6",
           "Microsoft.Extensions.DependencyInjection": "3.1.6",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6",
@@ -81,15 +81,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/Catharsium.Util.IO.dll": {
-            "assemblyVersion": "2.5.3.0",
-            "fileVersion": "2.5.3.0"
+            "assemblyVersion": "2.5.5.0",
+            "fileVersion": "2.5.5.0"
           }
         }
       },
-      "Catharsium.Util.Web/2.5.3": {
+      "Catharsium.Util.Web/2.5.5": {
         "dependencies": {
-          "Catharsium.Util": "2.5.3",
-          "Catharsium.Util.Configuration": "2.5.3",
+          "Catharsium.Util": "2.5.5",
+          "Catharsium.Util.Configuration": "2.5.5",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.Extensions.Caching.Memory": "3.1.6",
@@ -99,8 +99,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/Catharsium.Util.Web.dll": {
-            "assemblyVersion": "2.5.3.0",
-            "fileVersion": "2.5.3.0"
+            "assemblyVersion": "2.5.5.0",
+            "fileVersion": "2.5.5.0"
           }
         }
       },
@@ -401,8 +401,8 @@
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.0.1",
           "Catharsium.Trello.Models": "1.0.0",
-          "Catharsium.Util.Configuration": "2.5.3",
-          "Catharsium.Util.Web": "2.5.3",
+          "Catharsium.Util.Configuration": "2.5.5",
+          "Catharsium.Util.Web": "2.5.5",
           "System.Text.Json": "4.7.2"
         },
         "runtime": {
@@ -412,7 +412,7 @@
       "Catharsium.Trello.Core/1.0.0": {
         "dependencies": {
           "Catharsium.Trello.Models": "1.0.0",
-          "Catharsium.Util.IO": "2.5.3",
+          "Catharsium.Util.IO": "2.5.5",
           "Microsoft.Extensions.DependencyInjection": "3.1.6",
           "System.Text.Json": "4.7.2"
         },
@@ -422,7 +422,7 @@
       },
       "Catharsium.Trello.Models/1.0.0": {
         "dependencies": {
-          "Catharsium.Util": "2.5.3",
+          "Catharsium.Util": "2.5.5",
           "System.Text.Json": "4.7.2"
         },
         "runtime": {
@@ -451,33 +451,33 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/8.0.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512"
     },
-    "Catharsium.Util/2.5.3": {
+    "Catharsium.Util/2.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/uPu6f7Yi26HmqRhc51eZlyTwm8ca8hAq6rW68x1Atp9yKnUyXa9JySeTvZ9T3GrV7c0KzqHbe3TDeeXpgkwUA==",
-      "path": "catharsium.util/2.5.3",
-      "hashPath": "catharsium.util.2.5.3.nupkg.sha512"
+      "sha512": "sha512-5OSCyUo2eQpQl0t5EBS0vtzejyC9IVjzrXD8sUduRG+3c2zp3hyBijfRsUokqscG3nTtKVtZ9fiUgRREbg1N3Q==",
+      "path": "catharsium.util/2.5.5",
+      "hashPath": "catharsium.util.2.5.5.nupkg.sha512"
     },
-    "Catharsium.Util.Configuration/2.5.3": {
+    "Catharsium.Util.Configuration/2.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KLcV6hQy/Q8EQoCY8h/ynz8qHEz8kCrHvvxaay98g1USkPNEwg1IgJDMjIKT+gtYf/knGw4Rr8Uw6aaVsvyWEw==",
-      "path": "catharsium.util.configuration/2.5.3",
-      "hashPath": "catharsium.util.configuration.2.5.3.nupkg.sha512"
+      "sha512": "sha512-vowXVdHAXz9k+wMV4RVrluixph5flAMBLrzdyQQ94cO5+pcqhsX5mgD+zFsX/Kxbk0h26bfvJz/gH7ti2x/MjA==",
+      "path": "catharsium.util.configuration/2.5.5",
+      "hashPath": "catharsium.util.configuration.2.5.5.nupkg.sha512"
     },
-    "Catharsium.Util.IO/2.5.3": {
+    "Catharsium.Util.IO/2.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LkM9scf+9bYQ1CtfdlRYsinnCMmOfwo5cgR2dCXq7Im89cJpVdckTx9Yfje9TzQ82f0AkIiFf8QQHg2QrrdAVA==",
-      "path": "catharsium.util.io/2.5.3",
-      "hashPath": "catharsium.util.io.2.5.3.nupkg.sha512"
+      "sha512": "sha512-/vszTtp9+UXUtzbk9EpD8JNmmaLcefOq73SNFuqL+2z8ek7AJMJ2PdhtCzmaKH8hAXgu3icNY+/ZWAIxaVe91Q==",
+      "path": "catharsium.util.io/2.5.5",
+      "hashPath": "catharsium.util.io.2.5.5.nupkg.sha512"
     },
-    "Catharsium.Util.Web/2.5.3": {
+    "Catharsium.Util.Web/2.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SkOBat8zZPX55zKfukX8BPNjUAAQ+MK8OYD//X1g/2iIZ1Qa74HMn5UBajuw1TJutSTCMndHIFUX+VIXa7w2uQ==",
-      "path": "catharsium.util.web/2.5.3",
-      "hashPath": "catharsium.util.web.2.5.3.nupkg.sha512"
+      "sha512": "sha512-W0KeHnvrePxGaYJxlQ/T/8nIqKsX/GGtIWfaIN6FMp5xxVNf7wo48maTmxZuegJS6mCMOtIKg7zRrkDcY1zCXA==",
+      "path": "catharsium.util.web/2.5.5",
+      "hashPath": "catharsium.util.web.2.5.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
       "type": "package",

@@ -33,7 +33,9 @@ namespace Catharsium.Trello.Console.ActionHandlers
                     break;
                 }
 
+                this.console.WriteLine();
                 await this.actionHandlers[selectedIndex.Value - 1].Run();
+                this.console.WriteLine();
             }
         }
     }

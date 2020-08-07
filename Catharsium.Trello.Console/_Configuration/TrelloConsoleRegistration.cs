@@ -7,8 +7,6 @@ using Catharsium.Trello.Console.ActionHandlers.SubActions;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Data._Configuration;
 using Catharsium.Trello.Models.Interfaces.Console;
-using Catharsium.Trello.Plugins.Groceries._Configuration;
-using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Util._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
@@ -45,9 +43,6 @@ namespace Catharsium.Trello.Console._Configuration
 
             services.AddCatharsiumUtilities(configuration);
             services.AddIoUtilities(configuration);
-
-            services.AddWeeklyGoalsPlugin(configuration);
-            services.AddGroceriesPlugin(configuration);
 
             return services;
         }

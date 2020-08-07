@@ -14,7 +14,7 @@ namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
         private readonly ITrelloServiceFactory trelloServiceFactory;
         private readonly IConsole console;
 
-        public string FriendlyName => "Schedule Groceries";
+        public string FriendlyName => "Groceries > Schedule";
 
 
         public ScheduleActionHandler(ICardsClient cardsClient, ITrelloServiceFactory trelloServiceFactory, IConsole console)
@@ -36,10 +36,13 @@ namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
 
             while (startDate <= endDate) {
                 var cardName = $"{startDate:d MMM yyyy} ({startDate.ToString("dddd", new CultureInfo("nl-NL"))})";
-                var card = await service.GetCard("Groceries", cardName) ?? 
-                           await this.cardsClient.CreateNew(cardName, list.IdBoard, list.Id, labels: new[] {label.Id});
+                var card = await service.GetCard("Groceries", cardName);
+                if (card == null) {
+                    card = await this.cardsClient.CreateNew(cardName, list.IdBoard, list.Id, labels: new[] {label.Id});
+                    this.console.WriteLine($"Created card '{card}'");
+                }
+                else { this.console.WriteLine($"Card '{cardName}' already exists"); }
 
-                this.console.WriteLine($"Created card '{card}'");
                 startDate = startDate.AddDays(1);
             }
         }

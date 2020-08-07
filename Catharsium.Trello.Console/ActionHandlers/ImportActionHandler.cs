@@ -5,6 +5,7 @@ using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Catharsium.Util.IO.Interfaces;
 
 namespace Catharsium.Trello.Console.ActionHandlers
 {
@@ -13,6 +14,7 @@ namespace Catharsium.Trello.Console.ActionHandlers
         private readonly IBoardsClient boardsClient;
         private readonly IBoardsService boardsService;
         private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
+        private readonly IConsole console;
         private readonly TrelloConsoleConfiguration configuration;
 
 
@@ -20,11 +22,13 @@ namespace Catharsium.Trello.Console.ActionHandlers
             IBoardsClient boardsClient,
             IBoardsService boardsService,
             ITrelloRepositoryFactory boardsRepositoryFactory,
+            IConsole console,
             TrelloConsoleConfiguration configuration)
         {
             this.boardsClient = boardsClient;
             this.boardsService = boardsService;
             this.boardsRepositoryFactory = boardsRepositoryFactory;
+            this.console = console;
             this.configuration = configuration;
         }
 
@@ -35,9 +39,11 @@ namespace Catharsium.Trello.Console.ActionHandlers
         public async Task Run()
         {
             var boards = await this.boardsClient.GetAll();
+            this.console.WriteLine($"Found {boards.Length} boards");
             var repository = this.boardsRepositoryFactory.Create(this.configuration.RepositoryFolder);
             foreach (var boardId in boards.Select(b => b.Id)) {
                 var board = await this.boardsService.GetBoard(boardId);
+                this.console.WriteLine($"Saving board: {board}");
                 await repository.Store(board);
             }
         }

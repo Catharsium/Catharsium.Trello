@@ -17,7 +17,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests._Configuration
             var serviceCollection = Substitute.For<IServiceCollection>();
             var configuration = Substitute.For<IConfiguration>();
 
-            serviceCollection.AddWeeklyGoalsPlugin(configuration);
+            new WeeklyGoalsPluginRegistration().RegisterDependencies(serviceCollection, configuration);
             serviceCollection.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
         }
     }

@@ -38,7 +38,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             this.console = console;
         }
 
-        public string FriendlyName => "Active Goals";
+        public string FriendlyName => "Weekly Goals > Active";
 
 
         public async Task Run()
@@ -46,7 +46,6 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             var previousOpenCards = 0;
             var trelloService = this.trelloServiceFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
             var boards = (await trelloService.GetBoards()).ToList();
-            //var boards = await this.boardsClient.GetAll();
             foreach (var board in boards) {
                 this.console.WriteLine($"{board} (Created: {this.creationDateRetriever.FindCreationDate(board.Id)})");
             }
@@ -64,12 +63,12 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 
             var endDate = startDate.AddDays(7);
             while (endDate.AddDays(-7) < DateTime.Now) {
-                var dateFilter = this.cardFilterFactory.CreateDataFilter(startDate, endDate);
+                var dateFilter = this.cardFilterFactory.CreateCreationDataFilter(startDate, endDate);
 
                 var filteredCards = cards.Where(c => dateFilter.Includes(c)).ToList();
                 var openCards = filteredCards.Where(c => openLists.Contains(c.IdList)).ToList();
 
-                var weekFilter = this.cardFilterFactory.CreateDataFilter(endDate.AddDays(-7), endDate);
+                var weekFilter = this.cardFilterFactory.CreateCreationDataFilter(endDate.AddDays(-7), endDate);
                 var otherCards = filteredCards.Where(c => weekFilter.Includes(c) && !openLists.Contains(c.IdList));
                 var percentage = filteredCards.Any() ? Math.Round((decimal)openCards.Count / filteredCards.Count * 100, 2) : 0;
                 var delta = openCards.Count - previousOpenCards;
