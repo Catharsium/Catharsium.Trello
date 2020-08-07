@@ -3,9 +3,9 @@ using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
+using Catharsium.Util.IO.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Catharsium.Util.IO.Interfaces;
 
 namespace Catharsium.Trello.Console.ActionHandlers
 {
