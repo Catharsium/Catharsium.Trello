@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>D:\Cloud\OneDrive\Code\Projects\Catharsium.Trello\Catharsium.Trello.Console\bin\Debug\netcoreapp3.0\Plugins</OutputPath>
+    <OutputPath>..\..\Catharsium.Trello.Console\bin\Debug\netcoreapp3.0\Plugins</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

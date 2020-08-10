@@ -44,7 +44,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         public async Task Run()
         {
             var previousOpenCards = 0;
-            var trelloService = this.trelloServiceFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
+            var trelloService = this.trelloServiceFactory.Create("E:\\Cloud\\OneDrive\\Data\\Trello");
             var boards = (await trelloService.GetBoards()).ToList();
             foreach (var board in boards) {
                 this.console.WriteLine($"{board} (Created: {this.creationDateRetriever.FindCreationDate(board.Id)})");

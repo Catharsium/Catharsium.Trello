@@ -32,3 +32,7 @@
 /Plugins/Catharsium.Trello.Plugins.Groceries/bin
 /Plugins/Catharsium.Trello.Plugins.Groceries.Tests/bin
 /Plugins/Catharsium.Trello.Plugins.Groceries.Tests/obj
+/Plugins/Catharsium.Trello.Plugins.CalendarSync/bin/Debug/netstandard2.0
+/Plugins/Catharsium.Trello.Plugins.CalendarSync/obj
+/Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/bin/Debug/netcoreapp3.1
+/Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/obj

@@ -30,7 +30,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 
         public async Task Run()
         {
-            var repository = this.trelloRepositoryFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
+            var repository = this.trelloRepositoryFactory.Create("E:\\Cloud\\OneDrive\\Data\\Trello");
             var board = await repository.GetBoard("Weekly Goals");
             if (board == null) {
                 return;
