@@ -11,8 +11,8 @@ namespace Catharsium.Trello.Plugins.Groceries._Configuration
     {
         public void RegisterDependencies(IServiceCollection services, IConfiguration configuration)
         {
-            var trelloCoreConfiguration = configuration.Load<GroceriesPluginConfiguration>();
-            services.AddSingleton<GroceriesPluginConfiguration, GroceriesPluginConfiguration>(provider => trelloCoreConfiguration);
+            var config = configuration.Load<GroceriesPluginConfiguration>();
+            services.AddSingleton<GroceriesPluginConfiguration, GroceriesPluginConfiguration>(provider => config);
 
             services.AddScoped<IActionHandler, ScheduleActionHandler>();
         }

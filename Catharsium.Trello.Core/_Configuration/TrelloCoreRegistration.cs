@@ -1,4 +1,6 @@
 ﻿using Catharsium.Trello.Core.Filters;
+using Catharsium.Trello.Core.Filters.Complex;
+using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Util.Configuration.Extensions;
@@ -26,6 +28,11 @@ namespace Catharsium.Trello.Core._Configuration
             services.AddTransient(provider => {
                 return new Func<DateTime, DateTime, IDueDateFilter>(
                     (fromDate, toDate) => new DueDateFilter(fromDate, toDate)
+                );
+            });
+            services.AddTransient(provider => {
+                return new Func<CardState, ICardStateFilter>(
+                    (cardState) => new CardStateFilter(cardState)
                 );
             });
 

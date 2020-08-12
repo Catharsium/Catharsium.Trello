@@ -1,4 +1,5 @@
 ﻿using Catharsium.Trello.Models;
+using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Util.Filters;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,13 @@ namespace Catharsium.Trello.Core.Filters
         {
             var result = this.serviceProvider.GetService<Func<DateTime, DateTime, IDueDateFilter>>();
             return result(fromDate, toDate);
+        }
+
+
+        public IFilter<Card> CreateCardStateFilter(CardState cardState)
+        {
+            var result = this.serviceProvider.GetService<Func<CardState, ICardStateFilter>>();
+            return result(cardState);
         }
     }
 }

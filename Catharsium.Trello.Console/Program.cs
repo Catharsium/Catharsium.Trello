@@ -1,14 +1,18 @@
 ﻿using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
+using Catharsium.Trello.Models.Interfaces.Plugins;
+using Catharsium.Trello.Plugins.CalendarSync._Configuration;
+using Catharsium.Trello.Plugins.Groceries._Configuration;
+using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Loader;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
-using Catharsium.Trello.Models.Interfaces.Plugins;
-using Catharsium.Util.Interfaces;
 
 namespace Catharsium.Trello.Console
 {
@@ -23,20 +27,45 @@ namespace Catharsium.Trello.Console
 
             var serviceCollection = new ServiceCollection()
                 .AddTrelloConsole(configuration);
+            new GroceriesPluginRegistration().RegisterDependencies(serviceCollection, configuration);
+            new WeeklyGoalsPluginRegistration().RegisterDependencies(serviceCollection, configuration);
+            new CalendarSyncPluginRegistration().RegisterDependencies(serviceCollection, configuration);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var typesLoader = serviceProvider.GetService<ITypesLoader>();
-            var types = typesLoader.Load<IPluginRegistration>($"{Directory.GetCurrentDirectory()}/Plugins");
-            foreach (var type in types) {
-                if (Activator.CreateInstance(type) is IPluginRegistration instance) {
-                    instance.RegisterDependencies(serviceCollection, configuration);
-                }
+            var fileFactory = serviceProvider.GetService<IFileFactory>();
+            var pluginDirectory = fileFactory.CreateDirectory($"{Directory.GetCurrentDirectory()}/Plugins");
+            var assemblies = new List<Assembly>();
+            foreach (var file in pluginDirectory.GetFiles("*.dll")) {
+                var loadContext = new PluginLoadContext(file.FullName);
+                assemblies.Add(loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(file.FullName))));
+            }
+
+            var pluginRegistrations = assemblies.SelectMany(CreateCommands);
+            foreach (var pluginRegistration in pluginRegistrations) {
+                pluginRegistration.RegisterDependencies(serviceCollection, configuration);
             }
 
             serviceProvider = serviceCollection.BuildServiceProvider();
 
             var chooseOperationActionHandler = serviceProvider.GetService<IChooseActionHandler>();
             await chooseOperationActionHandler.Run();
+        }
+
+
+        private static IEnumerable<IPluginRegistration> CreateCommands(Assembly assembly)
+        {
+            foreach (var type in assembly.GetTypes()) {
+                if (!typeof(IPluginRegistration).IsAssignableFrom(type)) {
+                    continue;
+                }
+
+                if (!(Activator.CreateInstance(type) is IPluginRegistration result))
+                {
+                    continue;
+                }
+
+                yield return result;
+            }
         }
     }
 }

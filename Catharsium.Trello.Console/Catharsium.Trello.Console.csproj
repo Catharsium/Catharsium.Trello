@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Authors>Catharsium</Authors>
     <Product>Catharsium.Trello</Product>
@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Catharsium.Trello.Api\Catharsium.Trello.Api.Client.csproj" />
     <ProjectReference Include="..\Catharsium.Trello.Core\Catharsium.Trello.Core.csproj" />
     <ProjectReference Include="..\Catharsium.Trello.Data\Catharsium.Trello.Data.csproj" />
+    <ProjectReference Include="..\Plugins\Catharsium.Trello.Plugins.CalendarSync\Catharsium.Trello.Plugins.CalendarSync.csproj" />
     <ProjectReference Include="..\Plugins\Catharsium.Trello.Plugins.Groceries\Catharsium.Trello.Plugins.Groceries.csproj" />
     <ProjectReference Include="..\Plugins\Catharsium.Trello.Plugins.WeeklyGoals\Catharsium.Trello.Plugins.WeeklyGoals.csproj" />
   </ItemGroup>
