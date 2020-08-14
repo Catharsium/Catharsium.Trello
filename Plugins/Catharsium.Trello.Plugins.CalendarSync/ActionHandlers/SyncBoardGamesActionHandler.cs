@@ -1,7 +1,7 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
-using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Trello.Plugins.CalendarSync.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

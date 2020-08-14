@@ -1,9 +1,8 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Models.Interfaces.Api;
-using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +15,8 @@ namespace Catharsium.Trello.Console.ActionHandlers
         private readonly ITrelloRepositoryFactory boardsRepositoryFactory;
         private readonly IConsole console;
         private readonly TrelloConsoleConfiguration configuration;
+
+        public string FriendlyName => "Import";
 
 
         public ImportActionHandler(
@@ -32,10 +33,7 @@ namespace Catharsium.Trello.Console.ActionHandlers
             this.configuration = configuration;
         }
 
-
-        public string FriendlyName => "Import";
-
-
+        
         public async Task Run()
         {
             var boards = await this.boardsClient.GetAll();

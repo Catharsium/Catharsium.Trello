@@ -1,7 +1,6 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
-using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Data;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;

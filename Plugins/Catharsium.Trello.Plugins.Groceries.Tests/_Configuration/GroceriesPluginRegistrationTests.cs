@@ -1,6 +1,6 @@
-﻿using Catharsium.Trello.Models.Interfaces.Console;
-using Catharsium.Trello.Plugins.Groceries._Configuration;
+﻿using Catharsium.Trello.Plugins.Groceries._Configuration;
 using Catharsium.Trello.Plugins.Groceries.ActionHandlers;
+using Catharsium.Util.IO.Console.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

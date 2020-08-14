@@ -1,13 +1,12 @@
 ﻿using Catharsium.Trello.Core;
-using Catharsium.Trello.Models.Interfaces.Console;
+using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.Filters;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Catharsium.Trello.Models.Enums;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
@@ -41,7 +40,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             var startDate = DateTime.Now.GetDayFromWeek(DayOfWeek.Sunday).Date.AddHours(-7);
             var endDate = startDate.AddDays(7);
             var dateFilter = this.cardFilterFactory.CreateDueDateFilter(DateTime.MinValue, endDate);
-            
+
             while (cards.Any(c => c.Due > endDate)) {
                 var filteredCards = cards.Include(dateFilter).ToArray();
                 this.console.Write($"Due {endDate:yyyy-MM-dd} ");

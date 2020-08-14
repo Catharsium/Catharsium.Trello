@@ -1,7 +1,6 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
-using Catharsium.Trello.Models.Interfaces.Console;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Console.ActionHandlers
@@ -16,7 +15,7 @@ namespace Catharsium.Trello.Console.ActionHandlers
 
         public CreateActionHandler(
             IChooseBoardActionHandler chooseBoardActionHandler,
-            IBoardsClient boardsClient, 
+            IBoardsClient boardsClient,
             IListsClient listsClient,
             IConsole console)
         {

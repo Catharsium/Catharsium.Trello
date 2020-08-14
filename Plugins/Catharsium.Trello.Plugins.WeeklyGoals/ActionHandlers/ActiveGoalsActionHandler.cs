@@ -1,10 +1,9 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Models;
-using Catharsium.Trello.Models.Interfaces.Console;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Trello.Models.Interfaces.Data;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +19,8 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         private readonly ICreationDateRetriever creationDateRetriever;
         private readonly ICardFilterFactory cardFilterFactory;
         private readonly IConsole console;
+
+        public string FriendlyName => "Weekly Goals > Active";
 
 
         public ActiveGoalsActionHandler(
@@ -37,8 +38,6 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             this.cardFilterFactory = cardFilterFactory;
             this.console = console;
         }
-
-        public string FriendlyName => "Weekly Goals > Active";
 
 
         public async Task Run()

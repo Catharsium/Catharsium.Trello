@@ -1,7 +1,7 @@
-﻿using Catharsium.Trello.Models.Interfaces.Console;
-using Catharsium.Trello.Models.Interfaces.Plugins;
+﻿using Catharsium.Trello.Models.Interfaces.Plugins;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
 using Catharsium.Util.Configuration.Extensions;
+using Catharsium.Util.IO.Console.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

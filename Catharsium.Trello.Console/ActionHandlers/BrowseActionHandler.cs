@@ -1,6 +1,6 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers.Interfaces;
-using Catharsium.Trello.Models.Interfaces.Console;
+using Catharsium.Util.IO.Console.Interfaces;
 using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Console.ActionHandlers

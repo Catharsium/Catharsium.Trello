@@ -1,9 +1,9 @@
 ﻿using Catharsium.Trello.Console._Configuration;
-using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Plugins;
 using Catharsium.Trello.Plugins.CalendarSync._Configuration;
 using Catharsium.Trello.Plugins.Groceries._Configuration;
 using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
+using Catharsium.Util.IO.Console.Interfaces;
 using Catharsium.Util.IO.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,8 +59,7 @@ namespace Catharsium.Trello.Console
                     continue;
                 }
 
-                if (!(Activator.CreateInstance(type) is IPluginRegistration result))
-                {
+                if (!(Activator.CreateInstance(type) is IPluginRegistration result)) {
                     continue;
                 }
 

@@ -1,6 +1,6 @@
 ﻿using Catharsium.Trello.Console.ActionHandlers.SubActions;
 using Catharsium.Trello.Models;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
