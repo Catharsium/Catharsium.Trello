@@ -6,9 +6,9 @@ using Catharsium.Trello.Console.ActionHandlers.Interfaces;
 using Catharsium.Trello.Console.ActionHandlers.SubActions;
 using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Data._Configuration;
-using Catharsium.Util._Configuration;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO._Configuration;
+using Catharsium.Util.IO.Console._Configuration;
 using Catharsium.Util.IO.Console.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +23,13 @@ namespace Catharsium.Trello.Console._Configuration
             var trelloCoreConfiguration = configuration.Load<TrelloConsoleConfiguration>();
             services.AddSingleton<TrelloConsoleConfiguration, TrelloConsoleConfiguration>(_ => trelloCoreConfiguration);
 
-            services.AddScoped<IChooseActionHandler, ChooseActionHandler>();
+            services.AddTrelloCore(configuration);
+            services.AddTrelloApiClient(configuration);
+            services.AddTrelloData(configuration);
+
+            services.AddIoUtilities(configuration);
+            services.AddConsoleIoUtilities(configuration);
+
             services.AddScoped<IActionHandler, BrowseActionHandler>();
             services.AddScoped<IActionHandler, CreateActionHandler>();
             services.AddScoped<IActionHandler, ImportActionHandler>();
@@ -34,14 +40,8 @@ namespace Catharsium.Trello.Console._Configuration
             services.AddSingleton<ITrelloRestClient, TrelloRestClient>(provider => new TrelloRestClient(
                 new HttpClient(),
                 provider.GetService<TrelloApiClientConfiguration>(),
-                provider.GetService<IConsole>().AskForText("Enter your Trello Token:")));
-
-            services.AddTrelloCore(configuration);
-            services.AddTrelloApiClient(configuration);
-            services.AddTrelloData(configuration);
-
-            services.AddCatharsiumUtilities(configuration);
-            services.AddIoUtilities(configuration);
+                provider.GetService<IConsole>().AskForText("Enter your Trello Token:")
+            ));
 
             return services;
         }

@@ -13,8 +13,8 @@
   <ItemGroup>
     <PackageReference Include="Catharsium.Calendar.Core.Logic" Version="0.7.3" />
     <PackageReference Include="Catharsium.Calendar.Data.Google" Version="0.7.3" />
-    <PackageReference Include="Catharsium.Util.Configuration" Version="2.6.0.1" />
-    <PackageReference Include="Catharsium.Util.IO.Console" Version="2.6.0.1" />
+    <PackageReference Include="Catharsium.Util.Configuration" Version="2.6.0.4" />
+    <PackageReference Include="Catharsium.Util.IO.Console" Version="2.6.0.4" />
   </ItemGroup>
 
   <ItemGroup>

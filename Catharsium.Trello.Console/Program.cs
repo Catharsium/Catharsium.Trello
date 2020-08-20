@@ -29,16 +29,16 @@ namespace Catharsium.Trello.Console
                 .AddTrelloConsole(configuration);
             new GroceriesPluginRegistration().RegisterDependencies(serviceCollection, configuration);
             new WeeklyGoalsPluginRegistration().RegisterDependencies(serviceCollection, configuration);
-            new CalendarSyncPluginRegistration().RegisterDependencies(serviceCollection, configuration);
+            //new CalendarSyncPluginRegistration().RegisterDependencies(serviceCollection, configuration);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var fileFactory = serviceProvider.GetService<IFileFactory>();
             var pluginDirectory = fileFactory.CreateDirectory($"{Directory.GetCurrentDirectory()}/Plugins");
-            var assemblies = new List<Assembly>();
-            foreach (var file in pluginDirectory.GetFiles("*.dll")) {
-                var loadContext = new PluginLoadContext(file.FullName);
-                assemblies.Add(loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(file.FullName))));
-            }
+            var assemblies =
+                (from file in pluginDirectory.GetFiles("*.dll")
+                    let loadContext = new PluginLoadContext(file.FullName)
+                    select loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(file.FullName))))
+                .ToList();
 
             var pluginRegistrations = assemblies.SelectMany(CreateCommands);
             foreach (var pluginRegistration in pluginRegistrations) {
