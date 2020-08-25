@@ -14,6 +14,7 @@ namespace Catharsium.Trello.Plugins.Groceries._Configuration
             var config = configuration.Load<GroceriesPluginConfiguration>();
             services.AddSingleton<GroceriesPluginConfiguration, GroceriesPluginConfiguration>(provider => config);
 
+            services.AddScoped<IActionHandler, LogActionHandler>();
             services.AddScoped<IActionHandler, ScheduleActionHandler>();
         }
     }

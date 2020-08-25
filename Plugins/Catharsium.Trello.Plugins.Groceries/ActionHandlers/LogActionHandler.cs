@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Catharsium.Trello.Api.Client.Interfaces;
+﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Console.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
 {
@@ -39,9 +37,9 @@ namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
             }
 
             var cardName = this.console.AskForText("Enter the grocery name");
-            var dueDate = this.console.AskForDate("Enter the due date (default: today)");
+            var dueDate = this.console.AskForDate("Enter the due date (default: today)") ?? DateTime.Today;
 
-            await this.cardsClient.CreateNew(cardName, board.Id, list.Id, "bottom", due: DateTime.Today, isDone: true);
+            await this.cardsClient.CreateNew(cardName, board.Id, list.Id, "bottom", due: DateTime.Today, isDone: dueDate <= DateTime.Today);
 
             //var i = 1;
             //foreach (var card in board.Cards) {

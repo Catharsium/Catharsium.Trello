@@ -5,7 +5,6 @@ using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
@@ -32,10 +31,10 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
         [TestMethod]
         public async Task Run_()
         {
-            var boards = new List<Board>();
-            var repository = Substitute.For<ITrelloRepository>();
-            repository.GetBoards().Returns(boards);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(this.Configuration.RepositoryFolder).Returns(repository);
+            var boards = new Board[0];
+            var repository = Substitute.For<ITrelloService>();
+            repository.GetBoards().Returns(Task.FromResult(boards));
+            this.GetDependency<ITrelloServiceFactory>().Create(this.Configuration.RepositoryFolder).Returns(repository);
 
             await this.Target.Run();
         }

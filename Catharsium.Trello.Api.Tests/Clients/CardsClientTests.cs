@@ -67,9 +67,9 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
                     p.ContainsKey("idLabels") &&
                     (string)p["idLabels"] == string.Join(",", labels) &&
                     p.ContainsKey("due") &&
-                    (string)p["due"] == $"{due:yyyy-MM-dd} 17:00:00" &&
+                    (string)p["due"] == HttpUtility.UrlEncode($"{due:yyyy-MM-dd} 17:00:00") &&
                     p.ContainsKey("dueComplete") &&
-                    (bool)p["dueComplete"]
+                    (string)p["dueComplete"] == "1"
                 ))
                 .Returns(apiCard);
             this.GetDependency<IMapper>().Map<Card>(apiCard).Returns(expected);
@@ -85,16 +85,15 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
         [TestMethod]
         public async Task Update_ValidRequiredFields_PostsData()
         {
-            var name = "My name";
+            var id = "My id";
             var expected = new Card();
             var apiCard = new ApiCard();
-            this.GetDependency<ITrelloRestClient>().Put<ApiCard>("cards", Arg.Is<Dictionary<string, object>>(p =>
-                    p.ContainsKey("name") &&
-                    (string)p["name"] == HttpUtility.UrlEncode(name) &&
+            this.GetDependency<ITrelloRestClient>().Put<ApiCard>($"cards/{id}", Arg.Is<Dictionary<string, object>>(p =>
                     p.ContainsKey("idBoard") &&
                     (string)p["idBoard"] == BoardId &&
                     p.ContainsKey("idList") &&
                     (string)p["idList"] == ListId &&
+                    !p.ContainsKey("name") &&
                     !p.ContainsKey("pos") &&
                     !p.ContainsKey("idLabels") &&
                     !p.ContainsKey("due") &&
@@ -103,7 +102,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
                 .Returns(apiCard);
             this.GetDependency<IMapper>().Map<Card>(apiCard).Returns(expected);
 
-            var actual = await this.Target.Update(name, BoardId, ListId);
+            var actual = await this.Target.Update(id, BoardId, ListId);
             Assert.AreEqual(expected, actual);
         }
 
@@ -111,14 +110,15 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
         [TestMethod]
         public async Task Update_ValidOptionalFields_PostsData()
         {
+            var id = "My id";
             var name = "My name";
             var sourceListId = "My source list id";
             var position = "My position";
-            var labels = new[] { "My label" };
+            var labels = new[] {"My label"};
             var due = DateTime.Now;
             var expected = new Card();
             var apiCard = new ApiCard();
-            this.GetDependency<ITrelloRestClient>().Put<ApiCard>("cards", Arg.Is<Dictionary<string, object>>(p =>
+            this.GetDependency<ITrelloRestClient>().Put<ApiCard>($"cards/{id}", Arg.Is<Dictionary<string, object>>(p =>
                     p.ContainsKey("pos") &&
                     (string)p["pos"] == position &&
                     p.ContainsKey("idLabels") &&
@@ -131,7 +131,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
                 .Returns(apiCard);
             this.GetDependency<IMapper>().Map<Card>(apiCard).Returns(expected);
 
-            var actual = await this.Target.Update(name, BoardId, sourceListId, position, labels, due, true);
+            var actual = await this.Target.Update(id, BoardId, sourceListId, name, position, labels, due, true);
             Assert.AreEqual(expected, actual);
         }
 

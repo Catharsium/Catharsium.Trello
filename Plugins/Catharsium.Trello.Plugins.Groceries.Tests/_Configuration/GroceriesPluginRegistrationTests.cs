@@ -18,6 +18,7 @@ namespace Catharsium.Trello.Plugins.Groceries.Tests._Configuration
             var configuration = Substitute.For<IConfiguration>();
 
             new GroceriesPluginRegistration().RegisterDependencies(serviceCollection, configuration);
+            serviceCollection.AddScoped<IActionHandler, LogActionHandler>();
             serviceCollection.AddScoped<IActionHandler, ScheduleActionHandler>();
         }
     }
