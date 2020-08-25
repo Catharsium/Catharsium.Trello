@@ -44,5 +44,19 @@ namespace Catharsium.Trello.Api.Client.Clients
                 IgnoreNullValues = true, IgnoreReadOnlyProperties = true
             });
         }
+
+
+        public async Task<T> Put<T>(string path, Dictionary<string, object> data)
+        {
+            var parameters = string.Join("&", data.Select(d => $"{d.Key}={d.Value}"));
+            var url = $"{this.configuration.BaseUrl}/{path}?key={this.configuration.ApiKey}&token={this.apiToken}&{parameters}";
+            var result = await this.httpClient.PutAsync(url, null);
+            var x = await result.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<T>(x, new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true,
+                IgnoreNullValues = true,
+                IgnoreReadOnlyProperties = true
+            });
+        }
     }
 }

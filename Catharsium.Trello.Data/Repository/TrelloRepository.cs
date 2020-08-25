@@ -16,7 +16,11 @@ namespace Catharsium.Trello.Data.Repository
         private readonly IJsonFileWriter jsonFileWriter;
 
 
-        public TrelloRepository(string location, IFileFactory fileFactory, IJsonFileReader jsonFileReader, IJsonFileWriter jsonFileWriter)
+        public TrelloRepository(
+            string location, 
+            IFileFactory fileFactory,
+            IJsonFileReader jsonFileReader, 
+            IJsonFileWriter jsonFileWriter)
         {
             this.Location = location;
             this.fileFactory = fileFactory;
@@ -27,12 +31,26 @@ namespace Catharsium.Trello.Data.Repository
 
         public async Task<IEnumerable<Board>> GetBoards()
         {
+            var boardHistory = new Dictionary<DateTime, Board>();
             var directory = this.fileFactory.CreateDirectory(this.Location);
-            if (!directory.Exists) {
-                return await Task.FromResult(Array.Empty<Board>());
+            if (directory.Exists) {
+                foreach (var file in directory.GetFiles("*.json")) {
+                    try {
+                        boardHistory.Add(file.CreationTime, this.jsonFileReader.ReadFrom<Board>(file));
+                    }
+                    catch (Exception ex) {
+                        ;
+                    }
+                }
             }
 
-            var result = directory.GetFiles("*.json").Select(f => this.jsonFileReader.ReadFrom<Board>(f)).ToList();
+            var result = new List<Board>();
+            foreach (var board in boardHistory) {
+                if (!boardHistory.Any(b => b.Value.Id == board.Value.Id && b.Key > board.Key)) {
+                    result.Add(board.Value);
+                }
+            }
+
             return await Task.FromResult(result);
         }
 

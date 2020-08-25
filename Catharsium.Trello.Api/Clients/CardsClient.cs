@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Api.Client.Models;
 using Catharsium.Trello.Models;
@@ -21,7 +22,7 @@ namespace Catharsium.Trello.Api.Client.Clients
         }
 
 
-        public async Task<Card> CreateNew(string name, string boardId, string listId, string position = null, string[] labels = null)
+        public async Task<Card> CreateNew(string name, string boardId, string listId, string position = null, string[] labels = null, DateTime? due = null, bool isDone = false)
         {
             var parameters = new Dictionary<string, object> {
                 {"name", HttpUtility.UrlEncode(name)},
@@ -36,9 +37,52 @@ namespace Catharsium.Trello.Api.Client.Clients
             if (labels != null) {
                 parameters["idLabels"] = string.Join(",", labels);
             }
+            
+            if (due.HasValue)
+            {
+                parameters["due"] = $"{due.Value:yyyy-MM-dd} 17:00:00";
+            }
+
+            if (isDone) {
+                parameters["dueComplete"] = true;
+            }
 
             return this.mapper.Map<Card>(
                 await this.trelloRestClient.Post<ApiCard>("cards", parameters)
+            );
+        }
+
+
+        public async Task<Card> Update(string name, string boardId, string listId, string position = null, string[] labels = null, DateTime? due = null, bool isDone = false)
+        {
+            var parameters = new Dictionary<string, object> {
+                {"name", HttpUtility.UrlEncode(name)},
+                {"idBoard", boardId},
+                {"idList", listId}
+            };
+
+            if (!string.IsNullOrWhiteSpace(position))
+            {
+                parameters["pos"] = position;
+            }
+
+            if (labels != null)
+            {
+                parameters["idLabels"] = string.Join(",", labels);
+            }
+
+            if (due.HasValue)
+            {
+                parameters["due"] = $"{due.Value:yyyy-MM-dd} 17:00:00";
+            }
+
+            if (isDone)
+            {
+                parameters["dueComplete"] = true;
+            }
+
+            return this.mapper.Map<Card>(
+                await this.trelloRestClient.Put<ApiCard>("cards", parameters)
             );
         }
     }

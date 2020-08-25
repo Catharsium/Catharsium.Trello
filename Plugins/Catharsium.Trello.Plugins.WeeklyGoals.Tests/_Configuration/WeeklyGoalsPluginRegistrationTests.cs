@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
+using Catharsium.Trello.Plugins.WeeklyGoals.Logic;
 using Catharsium.Util.IO.Console.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,9 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests._Configuration
 
             new WeeklyGoalsPluginRegistration().RegisterDependencies(serviceCollection, configuration);
             serviceCollection.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
+            serviceCollection.AddScoped<IActionHandler, PlanningActionHandler>();
+
+            serviceCollection.AddScoped<IPlanningCreator, PlanningCreator>();
         }
     }
 }

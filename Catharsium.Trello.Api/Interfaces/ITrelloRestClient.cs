@@ -7,5 +7,6 @@ namespace Catharsium.Trello.Api.Client.Interfaces
     {
         Task<T> Get<T>(string path);
         Task<T> Post<T>(string path, Dictionary<string, object> data);
+        Task<T> Put<T>(string path, Dictionary<string, object> data);
     }
 }

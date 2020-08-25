@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Models.Interfaces.Plugins;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
+using Catharsium.Trello.Plugins.WeeklyGoals.Logic;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO.Console.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,8 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals._Configuration
 
             services.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
             services.AddScoped<IActionHandler, PlanningActionHandler>();
+
+            services.AddScoped<IPlanningCreator, PlanningCreator>();
         }
     }
 }

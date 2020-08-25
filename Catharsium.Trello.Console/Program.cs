@@ -1,6 +1,5 @@
 ﻿using Catharsium.Trello.Console._Configuration;
 using Catharsium.Trello.Models.Interfaces.Plugins;
-using Catharsium.Trello.Plugins.CalendarSync._Configuration;
 using Catharsium.Trello.Plugins.Groceries._Configuration;
 using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Util.IO.Console.Interfaces;

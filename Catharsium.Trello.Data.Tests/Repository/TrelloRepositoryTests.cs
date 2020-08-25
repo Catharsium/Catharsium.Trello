@@ -40,7 +40,7 @@ namespace Catharsium.Trello.Data.Tests.Repository
             this.GetDependency<IJsonFileReader>().ReadFrom<Board>(Arg.Is<IFile>(f => files.Contains(f))).Returns(expected);
 
             var actual = (await this.Target.GetBoards()).ToArray();
-            Assert.AreEqual(files.Length, actual.Length);
+            Assert.AreEqual(1, actual.Length);
             foreach (var board in actual) {
                 Assert.AreEqual(expected, board);
             }

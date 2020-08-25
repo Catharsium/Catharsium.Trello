@@ -26,14 +26,14 @@ namespace Catharsium.Trello.Plugins.Groceries.ActionHandlers
 
         public async Task Run()
         {
-            var startDate = this.console.AskForDate("Enter the start date (yyyy MM dd):") ?? DateTime.Today;
-            var endDate = this.console.AskForDate("Enter the end date (yyyy MM dd):") ?? startDate.AddDays(7);
+            var startDate = this.console.AskForDate("Enter the start date (yyyy MM dd) (default today):") ?? DateTime.Today;
+            var endDate = startDate.AddDays(this.console.AskForInt("Enter the number of days (default 1):") ?? 1);
 
             var service = this.trelloServiceFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
             var list = await service.GetList("Groceries", "Levensmiddelen");
             var label = await service.GetLabel("Groceries", "orange");
 
-            while (startDate <= endDate) {
+            while (startDate < endDate) {
                 var cardName = $"{startDate:d MMM yyyy} ({startDate.ToString("dddd", new CultureInfo("nl-NL"))})";
                 var card = await service.GetCard("Groceries", cardName);
                 if (card == null) {
