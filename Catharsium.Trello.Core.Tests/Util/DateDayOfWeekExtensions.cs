@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Catharsium.Trello.Core.Util;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Catharsium.Trello.Core.Tests
+namespace Catharsium.Trello.Core.Tests.Util
 {
     [TestClass]
     public class DateDayOfWeekExtensions

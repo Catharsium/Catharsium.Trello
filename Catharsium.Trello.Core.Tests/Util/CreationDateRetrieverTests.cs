@@ -1,8 +1,9 @@
-﻿using Catharsium.Util.Testing;
+﻿using Catharsium.Trello.Core.Util;
+using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Catharsium.Trello.Core.Tests
+namespace Catharsium.Trello.Core.Tests.Util
 {
     [TestClass]
     public class CreationDateRetrieverTests : TestFixture<CreationDateRetriever>

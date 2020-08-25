@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Core.Filters;
 using Catharsium.Trello.Core.Filters.Complex;
+using Catharsium.Trello.Core.Util;
 using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;

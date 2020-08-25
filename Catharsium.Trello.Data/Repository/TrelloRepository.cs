@@ -10,7 +10,7 @@ namespace Catharsium.Trello.Data.Repository
 {
     public class TrelloRepository : ITrelloRepository
     {
-        public string Location { get; }
+        public string Location { get; set; }
         private readonly IFileFactory fileFactory;
         private readonly IJsonFileReader jsonFileReader;
         private readonly IJsonFileWriter jsonFileWriter;

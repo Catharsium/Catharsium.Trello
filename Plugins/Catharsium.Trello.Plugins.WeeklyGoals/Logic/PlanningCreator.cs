@@ -6,6 +6,7 @@ using Catharsium.Util.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Catharsium.Trello.Core.Util;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.Logic
 {

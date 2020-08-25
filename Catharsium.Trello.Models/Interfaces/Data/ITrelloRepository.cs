@@ -5,7 +5,7 @@ namespace Catharsium.Trello.Models.Interfaces.Data
 {
     public interface ITrelloRepository
     {
-        string Location { get; }
+        string Location { get; set; }
 
         Task<IEnumerable<Board>> GetBoards();
         Task<Board> GetBoard(string idOrName);

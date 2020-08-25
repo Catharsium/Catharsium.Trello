@@ -7,51 +7,47 @@ namespace Catharsium.Trello.Data.Services
 {
     public class TrelloService : ITrelloService
     {
-        private readonly ITrelloRepositoryFactory trelloRepositoryFactory;
+        private ITrelloRepository Repository { get; }
         public string Location { get; }
 
 
         public TrelloService(string folder, ITrelloRepositoryFactory trelloRepositoryFactory)
         {
             this.Location = folder;
-            this.trelloRepositoryFactory = trelloRepositoryFactory;
+            this.Repository = trelloRepositoryFactory.Create(folder);
         }
+
 
 
         public async Task<Board[]> GetBoards()
         {
-            var repository = this.trelloRepositoryFactory.Create(this.Location);
-            return (await repository.GetBoards()).ToArray();
+            return (await this.Repository.GetBoards()).ToArray();
         }
 
 
         public async Task<Board> GetBoard(string boardIdOrName)
         {
-            var repository = this.trelloRepositoryFactory.Create(this.Location);
-            return await repository.GetBoard(boardIdOrName);
+            return await this.Repository.GetBoard(boardIdOrName);
         }
 
 
         public async Task<List> GetList(string boardIdOrName, string listIdOrName)
         {
-            var repository = this.trelloRepositoryFactory.Create(this.Location);
-            var board = await repository.GetBoard(boardIdOrName);
+            var board = await this.Repository.GetBoard(boardIdOrName);
             return board?.Lists.FirstOrDefault(l => l.Id == listIdOrName || l.Name == listIdOrName);
         }
 
 
         public async Task<Card> GetCard(string boardIdOrName, string cardIdOrName)
         {
-            var repository = this.trelloRepositoryFactory.Create(this.Location);
-            var board = await repository.GetBoard(boardIdOrName);
+            var board = await this.Repository.GetBoard(boardIdOrName);
             return board?.Cards.FirstOrDefault(l => l.Id == cardIdOrName || l.Name == cardIdOrName);
         }
 
 
         public async Task<Label> GetLabel(string boardIdOrName, string labelIdOrColor)
         {
-            var repository = this.trelloRepositoryFactory.Create(this.Location);
-            var board = await repository.GetBoard(boardIdOrName);
+            var board = await this.Repository.GetBoard(boardIdOrName);
             return board?.Labels.FirstOrDefault(l => l.Id == labelIdOrColor || l.Color == labelIdOrColor);
         }
     }

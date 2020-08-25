@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Core._Configuration;
 using Catharsium.Trello.Core.Filters;
+using Catharsium.Trello.Core.Util;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Util.Testing.Extensions;

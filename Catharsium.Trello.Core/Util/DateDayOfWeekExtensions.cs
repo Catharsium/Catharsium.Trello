@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Catharsium.Trello.Core
+namespace Catharsium.Trello.Core.Util
 {
     public static class DateDayOfWeekExtensions
     {

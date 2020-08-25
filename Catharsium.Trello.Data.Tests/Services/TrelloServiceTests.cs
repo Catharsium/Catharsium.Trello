@@ -36,7 +36,9 @@ namespace Catharsium.Trello.Data.Tests.Services
             this.Repository = Substitute.For<ITrelloRepository>();
             this.Repository.GetBoards().Returns(new[] {this.Board});
             this.Repository.GetBoard(BoardId).Returns(this.Board);
-            this.GetDependency<ITrelloRepositoryFactory>().Create(Folder).Returns(this.Repository);
+            var factory = Substitute.For<ITrelloRepositoryFactory>();
+            factory.Create(Folder).Returns(this.Repository);
+            this.SetDependency(factory);
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿using Catharsium.Trello.Models.Interfaces.Core;
 using System;
 
-namespace Catharsium.Trello.Core
+namespace Catharsium.Trello.Core.Util
 {
     public class CreationDateRetriever : ICreationDateRetriever
     {

@@ -38,8 +38,8 @@ namespace Catharsium.Trello.Api.Client.Clients
             var parameters = string.Join("&", data.Select(d => $"{d.Key}={d.Value}"));
             var url = $"{this.configuration.BaseUrl}/{path}?key={this.configuration.ApiKey}&token={this.apiToken}&{parameters}";
             var result = await this.httpClient.PostAsync(url, null);
-            var x = await result.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<T>(x, new JsonSerializerOptions {
+            var content = await result.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions {
                 PropertyNameCaseInsensitive = true,
                 IgnoreNullValues = true, IgnoreReadOnlyProperties = true
             });
@@ -51,8 +51,22 @@ namespace Catharsium.Trello.Api.Client.Clients
             var parameters = string.Join("&", data.Select(d => $"{d.Key}={d.Value}"));
             var url = $"{this.configuration.BaseUrl}/{path}?key={this.configuration.ApiKey}&token={this.apiToken}&{parameters}";
             var result = await this.httpClient.PutAsync(url, null);
-            var x = await result.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<T>(x, new JsonSerializerOptions {
+            var content = await result.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions {
+                PropertyNameCaseInsensitive = true,
+                IgnoreNullValues = true,
+                IgnoreReadOnlyProperties = true
+            });
+        }
+
+
+        public async Task<T> Delete<T>(string path, Dictionary<string, object> data)
+        {
+            var parameters = string.Join("&", data.Select(d => $"{d.Key}={d.Value}"));
+            var url = $"{this.configuration.BaseUrl}/{path}?key={this.configuration.ApiKey}&token={this.apiToken}&{parameters}";
+            var result = await this.httpClient.PutAsync(url, null);
+            var content = await result.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions {
                 PropertyNameCaseInsensitive = true,
                 IgnoreNullValues = true,
                 IgnoreReadOnlyProperties = true
