@@ -1,12 +1,12 @@
-﻿using Catharsium.Trello.Core;
+﻿using Catharsium.Trello.Core.Util;
 using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
+using Catharsium.Trello.Plugins.WeeklyGoals.Interfaces;
 using Catharsium.Trello.Plugins.WeeklyGoals.Models;
 using Catharsium.Util.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Catharsium.Trello.Core.Util;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.Logic
 {

@@ -37,3 +37,5 @@
 /Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/bin/Debug/netcoreapp3.1
 /Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/obj
 /Plugins/Catharsium.Trello.Plugins.CalendarSync/bin/Debug
+/Catharsium.Trello.Api.Tests/bin/Debug/net5.0
+/Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/bin/Debug/net5.0

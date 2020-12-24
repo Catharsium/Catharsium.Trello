@@ -2,7 +2,7 @@
 using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
 using Catharsium.Trello.Models.Interfaces.Data;
-using Catharsium.Trello.Plugins.WeeklyGoals.Logic;
+using Catharsium.Trello.Plugins.WeeklyGoals.Interfaces;
 using Catharsium.Util.Filters;
 using Catharsium.Util.IO.Console.Interfaces;
 using System;
@@ -19,6 +19,8 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         private readonly ICardsClient cardsClient;
         private readonly IConsole console;
 
+        public string FriendlyName => "Weekly Goals > Planning";
+
 
         public PlanningActionHandler(
             ITrelloServiceFactory trelloServiceFactory,
@@ -33,10 +35,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             this.cardsClient = cardsClient;
             this.console = console;
         }
-
-
-        public string FriendlyName => "Weekly Goals > Planning";
-
+        
 
         public async Task Run()
         {

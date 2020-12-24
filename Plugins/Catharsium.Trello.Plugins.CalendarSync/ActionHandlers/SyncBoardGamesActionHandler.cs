@@ -28,7 +28,7 @@ namespace Catharsium.Trello.Plugins.CalendarSync.ActionHandlers
 
         public async Task Run()
         {
-            var events = this.boardGameEventService.GetEvents();
+            var events = await this.boardGameEventService.GetEvents();
             var groups = events.GroupBy(e => e.ActivityName);
             foreach (var group in groups) {
                 var totalTime = new TimeSpan();

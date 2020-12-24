@@ -9,5 +9,6 @@ namespace Catharsium.Trello.Models.Interfaces.Core.Filters
         IFilter<Card> CreateCreationDataFilter(DateTime fromDate, DateTime toDate);
         IFilter<Card> CreateDueDateFilter(DateTime fromDate, DateTime toDate);
         IFilter<Card> CreateCardStateFilter(CardState cardState);
+        IFilter<Card> CreateListFilter(params string[] listIds);
     }
 }

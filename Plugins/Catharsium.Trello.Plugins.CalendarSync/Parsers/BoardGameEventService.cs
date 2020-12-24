@@ -1,12 +1,13 @@
 ﻿using Catharsium.Calendar.Core.Entities.Interfaces.Services;
 using Catharsium.Calendar.Core.Entities.Models;
 using Catharsium.Calendar.Core.Logic.Interfaces;
+using Catharsium.Calendar.Data.Google.Interfaces;
 using Catharsium.Trello.Plugins.CalendarSync.Interfaces;
 using Catharsium.Trello.Plugins.CalendarSync.Models;
-using Catharsium.Util.IO.Interfaces;
+using Catharsium.Util.IO.Console.Interfaces;
 using System;
 using System.Collections.Generic;
-using Catharsium.Calendar.Data.Google.Interfaces;
+using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Plugins.CalendarSync.Parsers
 {
@@ -30,16 +31,17 @@ namespace Catharsium.Trello.Plugins.CalendarSync.Parsers
         }
 
 
-        public List<ActivityEvent> GetEvents()
+        public async Task<List<ActivityEvent>> GetEvents()
         {
             var result = new List<Event>();
-            var calendars = this.calendarService.GetList();
-            foreach (var calendar in calendars) {
+            var calendars = await this.calendarService.GetList();
+            foreach (var calendar in calendars)
+            {
                 this.console.WriteLine($"{calendar.Description} - {calendar.Id}");
             }
             var events = this.eventManagementService.GetList("t.w.brachthuizer@gmail.com", DateTime.MinValue, DateTime.Now);
             throw new NotImplementedException();
-           // return result;
+            // return result;
         }
     }
 }

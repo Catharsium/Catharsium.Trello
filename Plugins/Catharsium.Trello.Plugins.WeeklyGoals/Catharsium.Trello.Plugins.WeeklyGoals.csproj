@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\Catharsium.Trello.Console\bin\Debug\netcoreapp3.1\Plugins</OutputPath>
+    <OutputPath>..\..\Catharsium.Trello.Console\bin\Debug\net5.0\Plugins</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Util.Configuration" Version="2.6.0.4" />
-    <PackageReference Include="Catharsium.Util.IO.Console" Version="2.6.0.4" />
+    <PackageReference Include="Catharsium.Util.Configuration" Version="20201218.1.0" />
+    <PackageReference Include="Catharsium.Util.IO.Console" Version="20201218.1.0" />
   </ItemGroup>
 
   <ItemGroup>
