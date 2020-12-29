@@ -2,5 +2,6 @@
 {
     public class WeeklyGoalsPluginConfiguration
     {
+        public string BoardId { get; set; }
     }
 }

@@ -57,7 +57,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
             var name = "My name";
             var sourceListId = "My source list id";
             var position = "My position";
-            var labels = new[] {"My label"};
+            var labels = new[] { "My label" };
             var due = DateTime.Now;
             var expected = new Card();
             var apiCard = new ApiCard();
@@ -67,7 +67,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
                     p.ContainsKey("idLabels") &&
                     (string)p["idLabels"] == string.Join(",", labels) &&
                     p.ContainsKey("due") &&
-                    (string)p["due"] == HttpUtility.UrlEncode($"{due:yyyy-MM-dd} 17:00:00") &&
+                    (string)p["due"] == HttpUtility.UrlEncode($"{due:YYYY-MM-ddTHH:mm:ssZ}") &&
                     p.ContainsKey("dueComplete") &&
                     (string)p["dueComplete"] == "1"
                 ))
@@ -114,7 +114,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
             var name = "My name";
             var sourceListId = "My source list id";
             var position = "My position";
-            var labels = new[] {"My label"};
+            var labels = new[] { "My label" };
             var due = DateTime.Now;
             var expected = new Card();
             var apiCard = new ApiCard();
@@ -124,7 +124,7 @@ namespace Catharsium.Trello.Api.Client.Tests.Clients
                     p.ContainsKey("idLabels") &&
                     (string)p["idLabels"] == string.Join(",", labels) &&
                     p.ContainsKey("due") &&
-                    (string)p["due"] == $"{due:yyyy-MM-dd} 17:00:00" &&
+                    (string)p["due"] == $"{due.ToUniversalTime():yyyy-MM-ddTHH:mm:ssZ}" &&
                     p.ContainsKey("dueComplete") &&
                     (bool)p["dueComplete"]
                 ))
