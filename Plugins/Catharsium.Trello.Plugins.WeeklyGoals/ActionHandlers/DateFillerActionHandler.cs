@@ -23,7 +23,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         private readonly IDatePatternResolver datePatternResolver;
         private readonly ICardsClient cardsClient;
         private readonly IConsole console;
-        private readonly WeeklyGoalsPluginConfiguration configuation;
+        private readonly WeeklyGoalsPluginSettings configuation;
 
         public string FriendlyName => "Fill Dates";
 
@@ -34,7 +34,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
             IDatePatternResolver datePatternResolver,
             ICardsClient cardsClient,
             IConsole console,
-            WeeklyGoalsPluginConfiguration configuation)
+            WeeklyGoalsPluginSettings configuation)
         {
             this.boardsService = boardsService;
             this.cardFilterFactory = cardFilterFactory;
@@ -77,7 +77,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
                     this.console.ForegroundColor = ConsoleColor.Red;
                     this.console.Write(newName);
                     this.console.ResetColor();
-                    this.console.Write($"' (Due: {dueDate:yyyy-MM-dd})");
+                    this.console.WriteLine($"' (Due: {dueDate:yyyy-MM-dd})");
                     await this.cardsClient.Update(card.Id, card.IdBoard, card.IdList, name: newName, due: dueDate);
                 }
             }

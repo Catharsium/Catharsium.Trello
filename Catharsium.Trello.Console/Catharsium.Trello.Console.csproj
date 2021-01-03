@@ -6,7 +6,8 @@
     <LangVersion>latest</LangVersion>
     <Authors>Catharsium</Authors>
     <Product>Catharsium.Trello</Product>
-    <Version>0.4</Version>
+    <Version>0.7</Version>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

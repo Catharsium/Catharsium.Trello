@@ -39,3 +39,7 @@
 /Plugins/Catharsium.Trello.Plugins.CalendarSync/bin/Debug
 /Catharsium.Trello.Api.Tests/bin/Debug/net5.0
 /Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/bin/Debug/net5.0
+/Catharsium.Trello.Api/bin/Release/netstandard2.0
+/Catharsium.Trello.Api.Tests/bin/Release/net5.0
+/Plugins/Catharsium.Trello.Plugins.CalendarSync/bin/Release/net5.0
+/Plugins/Catharsium.Trello.Plugins.CalendarSync.Tests/bin/Release/net5.0
