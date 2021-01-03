@@ -1,6 +1,6 @@
-﻿using Catharsium.Trello.Console._Configuration;
-using Catharsium.Trello.Models;
-using Catharsium.Trello.Models.Interfaces.Data;
+﻿using Catharsium.Trello.Models;
+using Catharsium.Trello.Models.Interfaces.Api;
+using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
 using Catharsium.Util.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,16 +14,17 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
     {
         #region Fixture
 
-        private TrelloConsoleConfiguration Configuration { get; set; }
+        private WeeklyGoalsPluginSettings Settings { get; set; }
 
 
         [TestInitialize]
         public void Initialize()
         {
-            this.Configuration = new TrelloConsoleConfiguration {
-                RepositoryFolder = "My repository folder"
+            this.Settings = new WeeklyGoalsPluginSettings
+            {
+                BoardId = "My board id"
             };
-            this.SetDependency(this.Configuration);
+            this.SetDependency(this.Settings);
         }
 
         #endregion
@@ -31,12 +32,10 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.Tests.ActionHandlers
         [TestMethod]
         public async Task Run_()
         {
-            var boards = new Board[0];
-            var repository = Substitute.For<ITrelloService>();
-            repository.GetBoards().Returns(Task.FromResult(boards));
-            this.GetDependency<ITrelloServiceFactory>().Create(this.Configuration.RepositoryFolder).Returns(repository);
+            var board = new Board();
+            this.GetDependency<IBoardsService>().GetBoard(this.Settings.BoardId).Returns(board);
 
-            await this.Target.Run();
+          //  await this.Target.Run();
         }
     }
 }

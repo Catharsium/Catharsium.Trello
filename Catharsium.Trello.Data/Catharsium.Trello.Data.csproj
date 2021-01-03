@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Util.IO" Version="2.6.0.4" />
+    <PackageReference Include="Catharsium.Util.IO" Version="20201229.1.0" />
   </ItemGroup>
 
   <ItemGroup>

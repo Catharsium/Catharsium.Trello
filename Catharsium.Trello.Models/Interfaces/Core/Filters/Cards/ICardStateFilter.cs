@@ -1,6 +1,6 @@
 ﻿using Catharsium.Util.Filters;
 
-namespace Catharsium.Trello.Models.Interfaces.Core.Filters
+namespace Catharsium.Trello.Models.Interfaces.Core.Filters.Cards
 {
     public interface ICardStateFilter : IFilter<Card> { }
 }

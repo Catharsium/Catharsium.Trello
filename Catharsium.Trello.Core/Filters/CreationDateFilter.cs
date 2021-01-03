@@ -1,6 +1,6 @@
 ﻿using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Core;
-using Catharsium.Trello.Models.Interfaces.Core.Filters;
+using Catharsium.Trello.Models.Interfaces.Core.Filters.Cards;
 using System;
 
 namespace Catharsium.Trello.Core.Filters

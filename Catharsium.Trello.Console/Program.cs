@@ -32,15 +32,17 @@ namespace Catharsium.Trello.Console
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var fileFactory = serviceProvider.GetService<IFileFactory>();
-            var pluginDirectory = fileFactory.CreateDirectory($"{Directory.GetCurrentDirectory()}/Plugins");
+            var trelloConsoleConfig = serviceProvider.GetService<TrelloConsoleConfiguration>();
+            var pluginDirectory = fileFactory.CreateDirectory(trelloConsoleConfig.PluginsFolder);
             var assemblies =
                 (from file in pluginDirectory.GetFiles("*.dll")
-                    let loadContext = new PluginLoadContext(file.FullName)
-                    select loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(file.FullName))))
+                 let loadContext = new PluginLoadContext(file.FullName)
+                 select loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(file.FullName))))
                 .ToList();
 
             var pluginRegistrations = assemblies.SelectMany(CreateCommands);
-            foreach (var pluginRegistration in pluginRegistrations) {
+            foreach (var pluginRegistration in pluginRegistrations)
+            {
                 pluginRegistration.RegisterDependencies(serviceCollection, configuration);
             }
 
@@ -53,12 +55,15 @@ namespace Catharsium.Trello.Console
 
         private static IEnumerable<IPluginRegistration> CreateCommands(Assembly assembly)
         {
-            foreach (var type in assembly.GetTypes()) {
-                if (!typeof(IPluginRegistration).IsAssignableFrom(type)) {
+            foreach (var type in assembly.GetTypes())
+            {
+                if (!typeof(IPluginRegistration).IsAssignableFrom(type))
+                {
                     continue;
                 }
 
-                if (!(Activator.CreateInstance(type) is IPluginRegistration result)) {
+                if (Activator.CreateInstance(type) is not IPluginRegistration result)
+                {
                     continue;
                 }
 

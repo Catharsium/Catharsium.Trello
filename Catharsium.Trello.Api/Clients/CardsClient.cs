@@ -40,7 +40,7 @@ namespace Catharsium.Trello.Api.Client.Clients
             }
 
             if (due.HasValue) {
-                parameters["due"] = HttpUtility.UrlEncode($"{due.Value:yyyy-MM-dd} 17:00:00");
+                parameters["due"] = HttpUtility.UrlEncode($"{due.Value:YYYY-MM-ddTHH:mm:ssZ}");
             }
 
             if (isDone) {
@@ -53,8 +53,8 @@ namespace Catharsium.Trello.Api.Client.Clients
         }
 
 
-        public async Task<Card> Update(string id, string boardId, string listId, string name = null, string position = null, string[] labels = null,
-            DateTime? due = null, bool isDone = false)
+        public async Task<Card> Update(string id, string boardId, string listId,
+            string name = null, string position = null, string[] labels = null, DateTime? due = null, bool isDone = false)
         {
             var parameters = new Dictionary<string, object> {
                 {"idBoard", boardId},
@@ -74,7 +74,7 @@ namespace Catharsium.Trello.Api.Client.Clients
             }
 
             if (due.HasValue) {
-                parameters["due"] = $"{due.Value:yyyy-MM-dd} 17:00:00";
+                parameters["due"] = $"{due.Value.ToUniversalTime():yyyy-MM-ddTHH:mm:ssZ}";
             }
 
             if (isDone) {

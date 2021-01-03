@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Models.Interfaces.Plugins;
 using Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers;
+using Catharsium.Trello.Plugins.WeeklyGoals.Interfaces;
 using Catharsium.Trello.Plugins.WeeklyGoals.Logic;
 using Catharsium.Util.Configuration.Extensions;
 using Catharsium.Util.IO.Console.Interfaces;
@@ -12,13 +13,15 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals._Configuration
     {
         public void RegisterDependencies(IServiceCollection services, IConfiguration configuration)
         {
-            var config = configuration.Load<WeeklyGoalsPluginConfiguration>();
-            services.AddSingleton<WeeklyGoalsPluginConfiguration, WeeklyGoalsPluginConfiguration>(provider => config);
+            var config = configuration.Load<WeeklyGoalsPluginSettings>();
+            services.AddSingleton<WeeklyGoalsPluginSettings, WeeklyGoalsPluginSettings>(provider => config);
 
             services.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
+            services.AddScoped<IActionHandler, DateFillerActionHandler>();
             services.AddScoped<IActionHandler, PlanningActionHandler>();
 
             services.AddScoped<IPlanningCreator, PlanningCreator>();
+            services.AddScoped<IDatePatternResolver, DatePatternResolver>();
         }
     }
 }

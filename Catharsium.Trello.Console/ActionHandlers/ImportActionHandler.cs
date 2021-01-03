@@ -1,5 +1,6 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console._Configuration;
+using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Console.Interfaces;
@@ -33,17 +34,33 @@ namespace Catharsium.Trello.Console.ActionHandlers
             this.configuration = configuration;
         }
 
-        
+
         public async Task Run()
         {
             var boards = await this.boardsClient.GetAll();
             this.console.WriteLine($"Found {boards.Length} boards");
+
+            var selectedBoard = this.console.AskForItem(boards);
             var repository = this.boardsRepositoryFactory.Create(this.configuration.RepositoryFolder);
-            foreach (var boardId in boards.Select(b => b.Id)) {
-                var board = await this.boardsService.GetBoard(boardId);
-                this.console.WriteLine($"Saving board: {board}");
-                await repository.Store(board);
+            if (selectedBoard == null)
+            {
+                foreach (var boardId in boards.Select(b => b.Id))
+                {
+                    await this.ImportBoard(repository, boardId);
+                }
             }
+            else
+            {
+                await this.ImportBoard(repository, selectedBoard.Id);
+            }
+        }
+
+
+        private async Task ImportBoard(ITrelloRepository repository, string boardId)
+        {
+            var board = await this.boardsService.GetBoard(boardId);
+            this.console.WriteLine($"Saving board: {board}");
+            await repository.Store(board);
         }
     }
 }

@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\Catharsium.Trello.Console\bin\Debug\netcoreapp3.1\Plugins</OutputPath>
+    <OutputPath>..\..\Catharsium.Trello.Console\bin\Debug\net5.0\Plugins</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Calendar.Core.Logic" Version="0.7.3" />
-    <PackageReference Include="Catharsium.Calendar.Data.Google" Version="0.7.3" />
-    <PackageReference Include="Catharsium.Util.Configuration" Version="2.6.0.4" />
-    <PackageReference Include="Catharsium.Util.IO.Console" Version="2.6.0.4" />
+    <PackageReference Include="Catharsium.Calendar.Core.Logic" Version="0.8.2" />
+    <PackageReference Include="Catharsium.Calendar.Data.Google" Version="0.8.2" />
+    <PackageReference Include="Catharsium.Util.Configuration" Version="20201229.1.0" />
+    <PackageReference Include="Catharsium.Util.IO.Console" Version="20201229.1.0" />
   </ItemGroup>
 
   <ItemGroup>

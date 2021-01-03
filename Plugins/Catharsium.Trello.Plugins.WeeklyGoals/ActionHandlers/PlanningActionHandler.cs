@@ -1,8 +1,9 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Models.Enums;
+using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
-using Catharsium.Trello.Models.Interfaces.Data;
-using Catharsium.Trello.Plugins.WeeklyGoals.Logic;
+using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
+using Catharsium.Trello.Plugins.WeeklyGoals.Interfaces;
 using Catharsium.Util.Filters;
 using Catharsium.Util.IO.Console.Interfaces;
 using System;
@@ -13,38 +14,39 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
     public class PlanningActionHandler : IActionHandler
     {
-        private readonly ITrelloServiceFactory trelloServiceFactory;
+        private readonly IBoardsService boardsService;
         private readonly ICardFilterFactory cardFilterFactory;
         private readonly IPlanningCreator planningCreator;
         private readonly ICardsClient cardsClient;
         private readonly IConsole console;
-
-
-        public PlanningActionHandler(
-            ITrelloServiceFactory trelloServiceFactory,
-            ICardFilterFactory cardFilterFactory,
-            IPlanningCreator planningCreator,
-            ICardsClient cardsClient,
-            IConsole console)
-        {
-            this.trelloServiceFactory = trelloServiceFactory;
-            this.cardFilterFactory = cardFilterFactory;
-            this.planningCreator = planningCreator;
-            this.cardsClient = cardsClient;
-            this.console = console;
-        }
-
+        private readonly WeeklyGoalsPluginSettings configuation;
 
         public string FriendlyName => "Weekly Goals > Planning";
 
 
+        public PlanningActionHandler(
+            IBoardsService boardsService,
+            ICardFilterFactory cardFilterFactory,
+            IPlanningCreator planningCreator,
+            ICardsClient cardsClient,
+            IConsole console,
+            WeeklyGoalsPluginSettings configuation)
+        {
+            this.boardsService = boardsService;
+            this.cardFilterFactory = cardFilterFactory;
+            this.planningCreator = planningCreator;
+            this.cardsClient = cardsClient;
+            this.console = console;
+            this.configuation = configuation;
+        }
+        
+
         public async Task Run()
         {
-            var repository = this.trelloServiceFactory.Create("D:\\Cloud\\OneDrive\\Data\\Trello");
-            var board = await repository.GetBoard("Weekly Goals");
-            var doingList = await repository.GetList("Weekly Goals", "Doing");
-            var stagingList = await repository.GetList("Weekly Goals", "Staging");
-            var planningList = await repository.GetList("Weekly Goals", "Planning");
+            var board = await this.boardsService.GetBoard(this.configuation.BoardId);
+            var doingList = board.Lists.FirstOrDefault(l => l.Name == "Doing");
+            var stagingList = board.Lists.FirstOrDefault(l => l.Name == "Staging");
+            var planningList = board.Lists.FirstOrDefault(l => l.Name == "Planning");
             if (board == null) {
                 return;
             }

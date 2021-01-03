@@ -4,6 +4,7 @@ using Catharsium.Trello.Core.Util;
 using Catharsium.Trello.Models.Enums;
 using Catharsium.Trello.Models.Interfaces.Core;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
+using Catharsium.Trello.Models.Interfaces.Core.Filters.Cards;
 using Catharsium.Util.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,11 @@ namespace Catharsium.Trello.Core._Configuration
             services.AddTransient(provider => {
                 return new Func<CardState, ICardStateFilter>(
                     (cardState) => new CardStateFilter(cardState)
+                );
+            });
+            services.AddTransient(provider => {
+                return new Func<string[], IListFilter>(
+                    (listIds) => new ListFilter(listIds)
                 );
             });
 
