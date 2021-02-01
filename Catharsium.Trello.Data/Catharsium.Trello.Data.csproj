@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsium.Util.IO" Version="20201229.1.0" />
+    <PackageReference Include="Catharsium.Util.IO" Version="20210113.3.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,6 @@ using Catharsium.Trello.Core.Util;
 using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Trello.Models.Interfaces.Core.Filters;
-using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Trello.Plugins.WeeklyGoals._Configuration;
 using Catharsium.Trello.Plugins.WeeklyGoals.Interfaces;
 using Catharsium.Util.Filters;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 {
-    public class DateFillerActionHandler : IActionHandler
+    public class AutoRenamerActionHandler : IActionHandler
     {
         private readonly IBoardsService boardsService;
         private readonly ICardFilterFactory cardFilterFactory;
@@ -25,10 +24,10 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
         private readonly IConsole console;
         private readonly WeeklyGoalsPluginSettings configuation;
 
-        public string FriendlyName => "Fill Dates";
+        public string FriendlyName => "Auto Rename";
 
 
-        public DateFillerActionHandler(
+        public AutoRenamerActionHandler(
             IBoardsService boardsService,
             ICardFilterFactory cardFilterFactory,
             IDatePatternResolver datePatternResolver,
@@ -64,11 +63,9 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals.ActionHandlers
 
         private async Task RenameCards(IEnumerable<Card> cards, int weeksFromNow)
         {
-            foreach (var card in cards)
-            {
+            foreach (var card in cards) {
                 var match = Regex.Match(card.Name, "(.+) \\(#(.+)\\)");
-                if (match.Success)
-                {
+                if (match.Success) {
                     var pivotDate = DateTime.Now.AddDays(7 * weeksFromNow);
                     var dueDate = pivotDate.GetDayFromWeek(DayOfWeek.Sunday).AddDays(7).Date.AddHours(-7);
                     var dateForName = this.datePatternResolver.ResolveForDate(match.Groups[2].Value, pivotDate);

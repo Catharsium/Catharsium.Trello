@@ -1,6 +1,5 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Console._Configuration;
-using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Api;
 using Catharsium.Trello.Models.Interfaces.Data;
 using Catharsium.Util.IO.Console.Interfaces;
@@ -42,15 +41,12 @@ namespace Catharsium.Trello.Console.ActionHandlers
 
             var selectedBoard = this.console.AskForItem(boards);
             var repository = this.boardsRepositoryFactory.Create(this.configuration.RepositoryFolder);
-            if (selectedBoard == null)
-            {
-                foreach (var boardId in boards.Select(b => b.Id))
-                {
+            if (selectedBoard == null) {
+                foreach (var boardId in boards.Select(b => b.Id)) {
                     await this.ImportBoard(repository, boardId);
                 }
             }
-            else
-            {
+            else {
                 await this.ImportBoard(repository, selectedBoard.Id);
             }
         }
