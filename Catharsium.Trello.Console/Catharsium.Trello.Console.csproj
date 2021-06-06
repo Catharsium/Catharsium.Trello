@@ -8,6 +8,7 @@
     <Product>Catharsium.Trello</Product>
     <Version>0.7</Version>
     <DebugType>embedded</DebugType>
+    <AssemblyName>Catharsium.Trello</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
