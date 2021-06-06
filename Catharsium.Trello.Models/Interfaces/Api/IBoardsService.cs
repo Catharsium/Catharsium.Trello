@@ -4,6 +4,7 @@ namespace Catharsium.Trello.Models.Interfaces.Api
 {
     public interface IBoardsService
     {
-        Task<Board> GetBoard(string id);
+        Task<Board[]> GetBoards();
+        Task<Board> GetBoard(string nameOrId);
     }
 }

@@ -39,9 +39,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.Groceries.Tests", "Plugins\Catharsium.Trello.Plugins.Groceries.Tests\Catharsium.Trello.Plugins.Groceries.Tests.csproj", "{FEC91A9E-E8CF-42F1-937D-51CAD9893329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Plugins.CalendarSync", "Plugins\Catharsium.Trello.Plugins.CalendarSync\Catharsium.Trello.Plugins.CalendarSync.csproj", "{2D3A86C3-4223-4A98-95B3-9E8C49EFA90F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.CalendarSync", "Plugins\Catharsium.Trello.Plugins.CalendarSync\Catharsium.Trello.Plugins.CalendarSync.csproj", "{2D3A86C3-4223-4A98-95B3-9E8C49EFA90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsium.Trello.Plugins.CalendarSync.Tests", "Plugins\Catharsium.Trello.Plugins.CalendarSync.Tests\Catharsium.Trello.Plugins.CalendarSync.Tests.csproj", "{94028E33-4E86-405A-851C-593ED93AA7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catharsium.Trello.Plugins.CalendarSync.Tests", "Plugins\Catharsium.Trello.Plugins.CalendarSync.Tests\Catharsium.Trello.Plugins.CalendarSync.Tests.csproj", "{94028E33-4E86-405A-851C-593ED93AA7BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution items", "_Solution items", "{D3C349C2-92BD-4222-9553-86510824B0DD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

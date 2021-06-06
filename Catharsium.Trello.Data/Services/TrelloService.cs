@@ -18,7 +18,6 @@ namespace Catharsium.Trello.Data.Services
         }
 
 
-
         public async Task<Board[]> GetBoards()
         {
             return (await this.Repository.GetBoards()).ToArray();

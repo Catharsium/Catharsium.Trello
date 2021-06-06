@@ -20,8 +20,10 @@ namespace Catharsium.Trello.Api.Client.Tests.Services
         public void Initialize()
         {
             this.Board = new Board {
-                Id = "My board id"
+                Id = "My board id",
+                Name = "My board name"
             };
+            this.GetDependency<IBoardsClient>().GetAll().Returns(new[] { this.Board });
             this.GetDependency<IBoardsClient>().GetBoard(this.Board.Id).Returns(this.Board);
         }
 
@@ -43,6 +45,14 @@ namespace Catharsium.Trello.Api.Client.Tests.Services
         public async Task GetBoard_ValidId_ReturnsBoard()
         {
             var actual = await this.Target.GetBoard(this.Board.Id);
+            Assert.AreEqual(this.Board, actual);
+        }
+
+
+        [TestMethod]
+        public async Task GetBoard_ValidName_ReturnsBoard()
+        {
+            var actual = await this.Target.GetBoard(this.Board.Name);
             Assert.AreEqual(this.Board, actual);
         }
 

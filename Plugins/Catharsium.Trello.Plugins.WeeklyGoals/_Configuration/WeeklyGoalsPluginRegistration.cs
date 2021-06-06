@@ -19,6 +19,7 @@ namespace Catharsium.Trello.Plugins.WeeklyGoals._Configuration
             services.AddScoped<IActionHandler, ActiveGoalsActionHandler>();
             services.AddScoped<IActionHandler, AutoRenamerActionHandler>();
             services.AddScoped<IActionHandler, PlanningActionHandler>();
+            services.AddScoped<IActionHandler, ChecklistGeneratorActionHandler>();
 
             services.AddScoped<IPlanningCreator, PlanningCreator>();
             services.AddScoped<IDatePatternResolver, DatePatternResolver>();

@@ -1,6 +1,7 @@
 ﻿using Catharsium.Trello.Api.Client.Interfaces;
 using Catharsium.Trello.Models;
 using Catharsium.Trello.Models.Interfaces.Api;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Catharsium.Trello.Api.Client.Services
@@ -16,9 +17,21 @@ namespace Catharsium.Trello.Api.Client.Services
         }
 
 
-        public async Task<Board> GetBoard(string id)
+        public async Task<Board[]> GetBoards()
         {
-            var board = await this.boardsClient.GetBoard(id);
+            return await this.boardsClient.GetAll();
+        }
+
+
+        public async Task<Board> GetBoard(string nameOrId)
+        {
+            var allBoards = await this.GetBoards();
+            var board = allBoards.FirstOrDefault(b => b.Id == nameOrId || b.Name == nameOrId);
+            if (board == null) {
+                return null;
+            }
+
+            board = await this.boardsClient.GetBoard(board.Id);
             if (board == null) {
                 return null;
             }
